@@ -7,7 +7,7 @@ body {
     -webkit-text-size-adjust: none;
     /* font-family: courier; */
     color: #000058;
-    background-color: yellow;
+    background-color: #ffffba;
     padding: 30px;
 }
 main {
@@ -28,6 +28,13 @@ p {
     margin: 0;
     margin-bottom: 40px;
 }
+ul {
+    margin-bottom: 40px;
+}
+li {
+    font-size: 40px;
+    line-height: 52px;
+}
 h2 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 40px;
@@ -36,6 +43,9 @@ h2 {
     margin-bottom: 20px;
     border-top: 6px double #000058;
     padding-top: 10px;
+}
+h3 {
+    font-size: 40px;
 }
 a {
     font-family: 'Times New Roman', Times, serif;
@@ -100,6 +110,18 @@ form input[type="submit"] {
     width: max-content;
     border-radius: 5px;
     padding: 10px 20px;
+}
+
+/* Support */
+#logo-marks {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    align-items: center;
+}
+#logo-marks img {
+    width: 100%;
+    max-width: 86px;
 }
 
 /* Navigation */
