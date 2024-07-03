@@ -12,7 +12,7 @@ body {
     -webkit-text-size-adjust: none;
     /* font-family: courier; */
     color: var(--text-color);
-    background-color: yellow;
+    background-color: var(--bg-color);
     padding: 30px;
 }
 main {
