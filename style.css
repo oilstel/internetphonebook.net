@@ -66,11 +66,12 @@ a {
     padding: 20px;
 }
 #submit-button {
-    padding: 15px 30px;
+    padding: 10px 28px;
     border: 2px solid var(--text-color);
-    border-radius: 50px;
+    border-radius: 9px;
     text-decoration: none;
     color: yellow;
+    font-style: italic;
     background-color: #000058;
 }
 #submit-button:hover {
