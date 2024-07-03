@@ -1,3 +1,8 @@
+:root {
+    --text-color: #000058;
+    --bg-color: yellow;
+}
+
 *, *:before, *:after { box-sizing: border-box; }
 body {
     font-family: 'Times New Roman', Times, serif;
@@ -6,8 +11,8 @@ body {
     -moz-osx-font-smoothing: grayscale; 
     -webkit-text-size-adjust: none;
     /* font-family: courier; */
-    color: #000058;
-    background-color: #ffffba;
+    color: var(--text-color);
+    background-color: yellow;
     padding: 30px;
 }
 main {
@@ -15,8 +20,8 @@ main {
     margin: 0 auto;
 }
 h1 {
-    font-family: Arial;
-    font-size: 100px;
+    font-family: Times;
+    font-size: 110px;
     font-weight: bold;
     margin: 0;
     margin-bottom: 30px;
@@ -40,8 +45,8 @@ h2 {
     font-size: 40px;
     font-weight: bold;
     margin: 0;
-    margin-bottom: 20px;
-    border-top: 6px double #000058;
+    margin-bottom: 40px;
+    border-top: 6px solid var(--text-color);
     padding-top: 10px;
 }
 h3 {
@@ -49,28 +54,40 @@ h3 {
 }
 a {
     font-family: 'Times New Roman', Times, serif;
-    color: #000058;
-    text-decoration-color: #000058;
+    color: var(--text-color);
+    text-decoration-color: var(--text-color);
     text-decoration-thickness: 2px;
     text-decoration-style: solid; 
     text-underline-offset: 3px;
 }
 .box {
-    border: 2px solid #000058;
+    border: 2px solid var(--text-color);
     max-width: max-content;
     padding: 20px;
 }
-
-section {
-    margin: 80px 0;
+#submit-button {
+    padding: 15px 30px;
+    border: 2px solid var(--text-color);
+    border-radius: 50px;
+    text-decoration: none;
+    color: yellow;
+    background-color: #000058;
+}
+#submit-button:hover {
+    color: yellow;
+    background-color: #000058;
 }
 
-form {
+section {
+    margin: 90px 0;
+}
+
+/* form {
     display: flex;
     flex-flow: column nowrap;
     gap: 40px;
     max-width: 700px;
-    border: 2px solid #000058;
+    border: 2px solid var(----text-color);
     padding: 60px 40px;
     margin: 80px auto;
 }
@@ -98,7 +115,7 @@ form input, form textarea {
     font-size: 40px;
     background-color: transparent;
     color: #000058;
-    border: 2px solid #000058;
+    border: 2px solid var(----text-color);
     padding: 4px;
     outline: 0;
     width: 100%;
@@ -110,7 +127,7 @@ form input[type="submit"] {
     width: max-content;
     border-radius: 5px;
     padding: 10px 20px;
-}
+} */
 
 /* Support */
 #logo-marks {
@@ -144,10 +161,9 @@ nav a {
     align-items: center;
     text-align: center;
     font-size: 40px;
-    color: #000058;
-    color: #000058058;
+    color: var(----text-color);
     font-weight: normal;
-    text-decoration-color: #000058058;
+    text-decoration-color: var(----text-color);
     text-decoration-thickness: 2px;
     text-decoration-style: solid; 
     text-underline-offset: 4px;
