@@ -119,9 +119,15 @@ form input[type="submit"] {
     gap: 20px;
     align-items: center;
 }
+#logo-marks a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #logo-marks img {
     width: 100%;
-    max-width: 86px;
+    max-height: 60px;
+    max-width: 150px;
 }
 
 /* Navigation */
