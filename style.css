@@ -85,6 +85,54 @@ section:last-child {
     margin-bottom: 0;
 }
 
+/* Form */
+form {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 40px;
+    max-width: 700px;
+    border: 2px solid #000058;
+    padding: 60px 40px;
+    margin: 80px auto;
+}
+form fieldset {
+    display: flex;
+    flex-flow: column nowrap;
+    border: 0;
+    padding: 0;
+    gap: 4px;
+}
+form label {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2px;
+    font-size: 20px;
+}
+form .tip {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+form input, form textarea {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+    background-color: transparent;
+    color: #000058;
+    border: 2px solid #000058;
+    padding: 4px;
+    outline: 0;
+    width: 100%;
+}
+form textarea {
+    height: 200px;
+}
+form input[type="submit"] {
+    width: max-content;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
 /* Support */
 #logo-marks {
     display: flex;
