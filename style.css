@@ -205,7 +205,7 @@ footer p {
         padding: 15px;
     }
     #book-icon {
-        max-width: 100px;
+        max-width: 200px;
     }
     h1 {
         font-size: 65px;
@@ -227,6 +227,22 @@ footer p {
         font-size: 24px;
         line-height: 30px;
     }
+    #email-form {
+        padding: 15px;
+        gap: 20px;
+        margin: 40px auto;
+    }
+    #email-form fieldset {
+        margin: 0;
+    }
+    #email-form input {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    #email-form input[type="submit"] {
+        width: 100%;
+        margin-top: 0;
+    }
 
     #logo-marks {
         gap: 20px;
@@ -238,6 +254,7 @@ footer p {
     }
     footer {
         gap: 10px;
+        margin-top: 100px;
     }
     footer p {
         font-size: 16px;
