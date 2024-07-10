@@ -151,7 +151,7 @@ form input[type="submit"] {
 
 #book-icon {
     width: 100%;
-    max-width: 150px;
+    max-width: 300px;
 }
 
 /* Navigation */
@@ -205,7 +205,7 @@ footer p {
         padding: 15px;
     }
     #book-icon {
-        max-width: 200px;
+        max-width: 150px;
     }
     h1 {
         font-size: 65px;
