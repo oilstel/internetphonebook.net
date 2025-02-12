@@ -1,0 +1,120 @@
+*, *:before, *:after { box-sizing: border-box; }
+body {
+    font-family: Courier, monospace;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #7f7f7f;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; 
+    -webkit-text-size-adjust: none;
+}
+
+main {
+    background: rgb(31, 153, 210);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#screen {
+    font-size: 14px;
+    line-height: 20px;
+    background: #000000;
+    color: yellow;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    border-radius: 20px;
+    padding: 20px;
+}
+#screen a {
+    color: yellow;
+    word-break: break-all;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+input[type="number"] {
+    width: 200px;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    background: #000000;
+    color: yellow;
+    border-radius: 20px;
+}
+
+#dial-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 250px;
+}
+
+button {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    color: #fff;
+    background: #000;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #404040;
+}
+
+button.clear {
+    background: #ffd900;
+    color: #000000;
+}
+
+button.clear:hover {
+    background: #ffd900;
+}
+
+button[type="submit"] {
+    color: #000000;
+    background: #1fff26;
+}
+
+button[type="submit"]:hover {
+    background: #1fff26;
+}
+
+button[type="submit"].pulse {
+    animation: pulse 1.5s infinite;
+    background: #1fff26;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#result {
+    text-align: center;
+}
+
+.site-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
