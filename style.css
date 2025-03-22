@@ -248,9 +248,21 @@ footer p {
     width: 100%;
     height: 100%;
 }
-
-#mute-button {
+#video-controls {
     position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 15px;
+    z-index: 2;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+#video-controls button {
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
     font-size: 28px;
