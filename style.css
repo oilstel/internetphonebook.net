@@ -233,9 +233,30 @@ footer p {
     font-weight: bold;
 }
 
+#video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
+#mute-button {
+    position: absolute;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 28px;
+    top: 15px;
+    right: 15px;
+    padding: 0.5rem 1rem;
+    background: yellow;
+    border: 1px solid #000;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 2;
+}
 
-
+#mute-button:hover {
+    background: rgb(255, 255, 165);
+}
 
 /* Mobile */
 @media(max-width: 805px) {
@@ -280,6 +301,9 @@ footer p {
     #email-form input[type="submit"] {
         width: 100%;
         margin-top: 0;
+    }
+    #mute-button {
+        font-size: 20px;
     }
 
     #logo-marks {
