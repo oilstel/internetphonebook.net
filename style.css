@@ -99,6 +99,16 @@ section:last-child {
     margin-bottom: 0;
 }
 
+figure {
+    margin: 0;
+}
+figure figcaption {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
 /* Form */
 form {
     display: flex;
