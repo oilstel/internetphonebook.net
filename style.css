@@ -22,7 +22,7 @@ main {
 h1 {
     font-family: Times;
     font-size: 110px;
-    font-weight: bold;
+    font-weight: normal;
     margin: 0;
     margin-bottom: 30px;
     z-index: 100;
@@ -61,10 +61,23 @@ a {
     text-decoration-style: solid; 
     text-underline-offset: 3px;
 }
+video {
+    width: 100%;
+    border-radius: 20px;
+}
+.status {
+    color: var(--bg-color);
+    background-color: var(--text-color);
+    font-style: italic;
+    width: max-content;
+    padding: 3px 10px;
+    transform: rotate(-1deg);
+    margin-top: -20px;
+}
 .box {
     border: 2px solid var(--text-color);
     max-width: max-content;
-    padding: 20px;
+    padding: 20px 0px;
 }
 #submit-button {
     padding: 10px 25px;
