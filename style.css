@@ -269,6 +269,7 @@ footer p {
     top: 15px;
     right: 15px;
     padding: 0.5rem 1rem;
+    color: var(--text-color);
     background: yellow;
     border: 1px solid #000;
     border-radius: 50px;
