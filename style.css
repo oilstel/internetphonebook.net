@@ -360,4 +360,9 @@ footer p {
     #currently-printing img {
         max-width: 100%;
     }
+
+    #video-controls button {
+        font-size: 16px;
+        
+    }
 }
