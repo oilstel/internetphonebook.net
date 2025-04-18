@@ -46,41 +46,12 @@ function initializeSlideshow() {
 
     // Exit if slideshow elements don't exist
     if (!slideshow || !featuredImage || thumbnails.length === 0) return;
-
-    // Set up fade transition for featured image
-    featuredImage.style.transition = 'opacity 2s ease-in-out';
     
-    // Function to change the featured image with cross-dissolve effect
+    // Function to change the featured image (direct swap, no transition)
     function changeFeaturedImage(index) {
-        // Create a clone of the current image to fade out
-        const oldImage = featuredImage.cloneNode(true);
-        oldImage.style.position = 'absolute';
-        oldImage.style.top = '0';
-        oldImage.style.left = '0';
-        oldImage.style.width = '100%';
-        oldImage.style.height = 'auto';
-        oldImage.style.opacity = '1';
-        oldImage.style.transition = 'opacity 2s ease-in-out';
-        
-        // Add the clone to the container
-        featuredImageContainer.style.position = 'relative';
-        featuredImageContainer.appendChild(oldImage);
-        
-        // Change the source of the original image
-        featuredImage.style.opacity = '0';
+        // Simply update the image source
         featuredImage.src = thumbnails[index].src;
         featuredImage.alt = thumbnails[index].alt;
-        
-        // Fade in the new image while fading out the old one
-        setTimeout(() => {
-            featuredImage.style.opacity = '1';
-            oldImage.style.opacity = '0';
-            
-            // Remove the clone after transition completes
-            setTimeout(() => {
-                featuredImageContainer.removeChild(oldImage);
-            }, 200);
-        }, 50);
         
         // Update current index
         currentIndex = index;
