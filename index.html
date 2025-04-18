@@ -43,72 +43,95 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Internet Phone Book">
 
-    <link rel="stylesheet" href="style.css?v=1.2">
+    <link rel="stylesheet" href="style.css?v=1.3">
 </head>
 <body>
     <main>
         <nav>
-            <a href="#open-call">Open call</a>
-            <a href="#release">Book release</a>
+            <!-- <a href="#stocklist">Stocklist</a> -->
+            <a href="#tour">Book tour</a>
+            <a href="#mailing-list">Mailing list</a>
             <a href="#sponsors">Sponsors</a>
         </nav>
 
-        <br>
+        <br><br>
 
         <div>
             <!-- <img src="images/book.png" alt="" id="book-icon"> -->
-            <img src="images/ipb.png" id="book-icon">
+            <img src="images/laptops-and-flower.svg" id="book-icon">
         </div>
 
-        <h1>Internet Phone Book</h1>
+        <div id="label">Issue One for 2025</div>
 
-        <p class="status">currently printing!</p>
+        <h1 style="margin-bottom: 0;">Internet Phone Book</h1>
+        
+        <div class="double-rule" style="margin-top: 0;"></div>
 
-        <!-- <p class="box">Call this website for audio version: <b>(555) 123-4567</b></p> -->
+        <p id="#about">An annual publication for exploring the vast poetic web, featuring the personal websites of hundreds of designers, developers, writers, curators, and educators.</p>
 
-        <!-- <div id="currently-printing">
-            <img src="images/march-19-2025.jpg" alt="a stack of printed spreads in the print shop in athens">
-            <p>
-                <i>update march 19, 2025 ~ currently printing!</i>
-            </p>
-        </div> -->
-
-        <p id="#about">We are creating a physical directory for exploring the vast poetic web. It features the personal websites of hundreds of designers, developers, writers, curators, and educators.</p>
-
-        <figure id="video-container">
-            <div id="video-controls">
-                <button id="pause-button">pause</button>
-                <button id="mute-button">sound</button>
+        <div id="slideshow">
+            <figure class="featured-image">
+                <img src="images/documentation/34280016.png" alt="">
+                <figcaption>
+                    Issue One of the Internet Phone Book. Photographs by Ana Šantl.
+                </figcaption>
+            </figure>
+            <div id="thumbs">
+                <img src="images/documentation/34280016.png" alt="">
+                <img src="images/documentation/34280023.png" alt="">
+                <img src="images/documentation/34280025.png" alt="">
+                <img src="images/documentation/34280030.png" alt="">
+                <img src="images/documentation/34300002.png" alt="">
+                <img src="images/documentation/34300005.png" alt="">
+                <img src="images/documentation/34280022.png" alt="">
             </div>
-            <video src="https://attachments.are.na/35430863/8320a6912364f08961fe0b160a05fe59.mp4?1742636529" muted autoplay loop playsinline poster="https://d2w9rnfcy7mm78.cloudfront.net/35431084/original_f8338d34791107e6a03e73ebe5498edf.jpg"></video>
-            <figcaption>
-               Printing of the Internet Phone Book at Τυπογραφείο Πλέτσας-Κάρδαρη on March 19, 2025 and views from Philopappos Hill on March 20, 2025 in Athens. Music is Echoes on the Hem by Tujiko Noriko. Hosted on <a href="https://www.are.na/">Are.na</a>.
-            </figcaption>
-        </figure>
+        </div>
 
-        <!--  <section id="open-call">
-            <h2>Open call for sites</h2>
+        <section id="tour">
+            <h2 class="flower-right">Book tour</h2>
 
-            <p>We are seeking personal, poetic, and human websites. If you would like your site to be considered for the first edition, click the link below to submit your website and we will get back to you.</p>
+            <p>We are taking the Internet Phone Book on a tour.</p>
 
-            <br>
+            <h3 style="margin-bottom: 0; font-style: italic;">Upcoming events</h3>
 
-            <p><a href="https://tally.so/r/wzex8Z" id="submit-button">Submit a site &rarr;</a></p>
+            <div id="events-carousel">
+                <div class="event">
+                    <figure>
+                        <img src="images/events/extra-practice.jpg" alt="Extra Practice">
+                    </figure>
+                    <p class="event-info">
+                        <b>Saturday, May 17, 2025</b><br>
+                        17:00–19:00<br>
+                        Extra Practice<br>
+                        Linker Rottekade 5A, Rotterdam<br>
+                        <a href="https://extrapractice.space" target="_blank">link</a>
+                    </p>
+                </div>
 
-        </section> -->
+                <!-- <div class="event">
+                    <figure>
+                        <img src="images/events/adad-books.png" alt="Adad Books">
+                    </figure>
+                    <p class="event-info">
+                        <b><i>Date coming soon</i></b><br>
+                        Adad Books<br>
+                        Anteou 1, Athens<br>
+                        <a href="https://www.instagram.com/adadbooks/?hl=en" target="_blank">link</a>
+                    </p>
+                </div> -->
+            </div>
+
+            <br><br>
+
+            <p>If you’d like to host an event, get in <a href="mailto:tour@internetphonebook.net">touch with us</a>.</p>
+        </section>
 
         <section id="release">
-            <h2>Book release</h2>
+            <h2 class="flower-left">Mailing list</h2>
 
-             <p>We will release the first edition of the Internet Phone Book this spring. The book will be available online and in selected independent bookshops and community libraries.</p>
-
-<!--             <p>We will release the first edition of the Internet Phone Book at <a href="http://naiveyearly.com">Naive Yearly</a> on Friday, September 20th, 2024 at Museum of Architecture and Design Ljubljana, Slovenia.</p> -->
-
-<!--             <p>Afterwards, the book will be available online and in selected independent bookshops and community libraries. 
-            </p> -->
 
             <form id="email-form" action="https://buttondown.email/api/emails/embed-subscribe/internetphonebook" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/internetphonebook', 'popupwindow')" class="embeddable-buttondown-form">
-                <p style="margin-bottom: 0;"><i>Sign up to be notified when the book becomes available</i></p>
+                <p style="margin-bottom: 0;"><i>Sign up to be notified for issue two’s open call.</i></p>
 
                 <fieldset>
                     <label for="bd-email">Your email</label>
@@ -121,6 +144,18 @@
             </form>
 
             <p>Want to carry the book? Get in <a href="mailto:mail@internetphonebook.net">touch with us</a>.</p>
+
+            <br><br>
+
+            <figure class="two-up-images">
+                <div class="image-grouping">
+                    <img src="images/documentation/34280026.png" alt="" style="transform: rotate(1deg);">
+                    <img src="images/documentation/34280028.png" alt="" style="transform: rotate(-1deg);">
+                </div>
+                <figcaption>
+                    Photographs by Ana Šantl.
+                </figcaption>
+            </figure>
         </section>
 
         <!-- <section>
@@ -165,6 +200,6 @@
         </footer>
     </main>
 
-    <script src="script.js?v=1.0"></script>
+    <script src="script.js?v=1.3"></script>
 </body>
 </html>

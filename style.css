@@ -1,6 +1,6 @@
 :root {
-    --text-color: #000058;
-    --bg-color: yellow;
+    --text-color: #000;
+    --bg-color: #FFFDCC;
 }
 
 *, *:before, *:after { box-sizing: border-box; }
@@ -13,15 +13,18 @@ body {
     /* font-family: courier; */
     color: var(--text-color);
     background-color: var(--bg-color);
-    padding: 30px;
+    padding: 20px 30px;
 }
 main {
+    position: relative;
     width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
 }
 h1 {
     font-family: Times;
-    font-size: 110px;
+    font-size: 8dvw;
+    /* font-size: max(120px, 8dvw); */
     font-weight: normal;
     margin: 0;
     margin-bottom: 30px;
@@ -47,11 +50,12 @@ h2 {
     font-weight: bold;
     margin: 0;
     margin-bottom: 40px;
-    border-top: 2px solid var(--text-color);
+    border-top: 2px dotted var(--text-color);
     padding-top: 10px;
 }
 h3 {
-    font-size: 40px;
+    font-size: 26px;
+    line-height: 32px;
 }
 a {
     font-family: 'Times New Roman', Times, serif;
@@ -61,10 +65,147 @@ a {
     text-decoration-style: solid; 
     text-underline-offset: 3px;
 }
+figure img {
+    width: 100%;
+}
+#label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 26px;
+    line-height: 32px;
+    margin-bottom: 40px;
+    font-style: italic;
+    border: 2px dotted var(--text-color);
+    border-radius: 100%;
+    padding: 20px;
+    transform: rotate(8deg);
+}
+
+figure.two-up-images {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+figure.two-up-images .image-grouping {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+figure.two-up-images img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+
+/* Flowers */
+h2.flower-left, h2.flower-right {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 4px;
+    align-items: center;
+}
+h2.flower-left::before, h2.flower-right::before {
+    content: " ";
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 10px;
+}
+h2.flower-left::before {
+    background-image: url('images/kristoffer-flower.svg');
+}
+h2.flower-right::before {
+    background-image: url('images/elliott-flower.svg');
+}
+
+/* Slideshow */
+#slideshow {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 15px;
+}
+#slideshow figure.featured-image img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: #000;
+}
+#slideshow #thumbs {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+}
+#slideshow #thumbs img {
+    width: 100%;
+    max-width: 170px;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+#slideshow #thumbs img:hover {
+    border: 2px solid var(--text-color);
+    cursor: pointer;
+}
+#slideshow #thumbs img.active {
+    border: 2px solid var(--text-color);
+}
+
+
+
+
+/* Events */
+#events-carousel {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 30px;
+    overflow-x: auto;
+    padding: 15px 0px 15px 30px;
+    margin-left: -30px;
+    margin-right: -30px;
+}
+#events-carousel .event {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0px;
+    width: 400px;
+    min-width: 400px;
+}
+#events-carousel .event img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+#events-carousel .event .event-info {
+    font-size: 26px;
+    line-height: 32px;
+    margin-top: 10px;
+}
+
 video {
     width: 100%;
     border-radius: 20px;
 }
+.double-rule, .single-rule {
+    width: 100%;
+    border-bottom: 2px dotted var(--text-color);
+    margin: 40px 0;
+}
+.double-rule:before {
+    content: " ";
+    display: block;
+    width: 100%;
+    border-bottom: 2px dotted var(--text-color);
+    margin-bottom: 10px;
+}
+
 .status {
     color: var(--bg-color);
     background-color: var(--text-color);
@@ -94,6 +235,7 @@ video {
 
 section {
     margin: 90px 0;
+    padding: 15px 0;
 }
 section:last-child {
     margin-bottom: 0;
@@ -115,7 +257,7 @@ form {
     flex-flow: column nowrap;
     gap: 40px;
     max-width: 700px;
-    border: 2px solid #000058;
+    border: 2px solid var(--text-color);
     padding: 60px 40px;
     margin: 80px auto;
 }
@@ -142,8 +284,8 @@ form input, form textarea {
     font-family: 'Times New Roman', Times, serif;
     font-size: 40px;
     background-color: transparent;
-    color: #000058;
-    border: 2px solid #000058;
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
     padding: 4px;
     outline: 0;
     width: 100%;
@@ -183,7 +325,7 @@ nav {
     font-family: 'Times New Roman', Times, serif;
     display: flex;
     flex-flow: row wrap;
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 40px;
 }
 nav a {
@@ -191,15 +333,20 @@ nav a {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 40px;
-    color: var(----text-color);
-    font-weight: bold;
+    font-size: 26px;
+    line-height: 32px;
+    color: #000000b7;
+    font-weight: normal;
     text-decoration-color: var(----text-color);
     text-decoration-thickness: 2px;
-    text-decoration-style: solid; 
+    text-decoration-style: dotted; 
     text-underline-offset: 4px;
     /* text-decoration: none; */
 }
+nav a:hover {
+    color: var(--text-color);
+    text-decoration-style: solid;
+}   
 
 
 
@@ -286,6 +433,29 @@ footer p {
     body {
         padding: 15px;
     }
+    #label {
+        top: 50px;
+        font-size: 24px;
+        line-height: 30px;
+    }
+    figure img, #slideshow #thumbs img {
+        border-radius: 5px !important;
+    }
+    #slideshow, #slideshow #thumbs {
+        gap: 6px;
+    }
+    #slideshow #thumbs img {
+        min-width: 57px;
+    }
+    figure.two-up-images .image-grouping {
+        gap: 15px;
+    }
+    #events-carousel {
+        gap: 20px;
+    }
+    #events-carousel .event {
+        min-width: initial;
+    }
     #book-icon {
         max-width: 150px;
     }
@@ -305,7 +475,7 @@ footer p {
     nav a {
         font-size: 24px;
     }
-    p, li {
+    p, li, #events-carousel .event .event-info {
         font-size: 24px;
         line-height: 30px;
     }
