@@ -63,7 +63,7 @@ a {
     color: var(--text-color);
     text-decoration-color: var(--text-color);
     text-decoration-thickness: 2px;
-    text-decoration-style: solid; 
+    text-decoration-style: dotted; 
     text-underline-offset: 3px;
 }
 figure img {
