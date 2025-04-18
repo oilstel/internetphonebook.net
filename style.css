@@ -14,6 +14,7 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
     padding: 20px 30px;
+    overflow-x: hidden;
 }
 main {
     position: relative;
@@ -183,7 +184,7 @@ h2.flower-right::before {
     max-width: 400px;
 }
 #events-carousel .event:last-child {
-    margin-right: 30px;
+    padding-right: 30px;
 }
 #events-carousel .event img {
     border-radius: 10px;
