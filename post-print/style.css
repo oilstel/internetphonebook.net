@@ -20,9 +20,11 @@ main {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+}
 h1 {
     font-family: Times;
     font-size: 8dvw;
+    /* font-size: max(120px, 8dvw); */
     font-weight: normal;
     margin: 0;
     margin-bottom: 30px;
@@ -48,7 +50,7 @@ h2 {
     font-weight: bold;
     margin: 0;
     margin-bottom: 40px;
-    border-top: 2px solid var(--text-color);
+    border-top: 2px dotted var(--text-color);
     padding-top: 10px;
 }
 h3 {
@@ -79,6 +81,22 @@ figure img {
     padding: 20px;
     transform: rotate(8deg);
 }
+
+figure.two-up-images {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+figure.two-up-images .image-grouping {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+figure.two-up-images img {
+    width: 100%;
+    border-radius: 10px;
+}
+
 
 /* Flowers */
 h2.flower-left, h2.flower-right {
