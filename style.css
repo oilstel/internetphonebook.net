@@ -125,15 +125,22 @@ h2.flower-right::before {
 /* Slideshow */
 #slideshow {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     gap: 15px;
 }
-#slideshow figure.featured-image img {
+#slideshow figure.featured-image img,
+#slideshow #current-image img {
     width: 100%;
     aspect-ratio: 4/3;
     object-fit: cover;
     border-radius: 10px;
     background-color: #000;
+}
+#slideshow #slideshow-images {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    gap: 10px;
 }
 #slideshow #thumbs {
     display: flex;
@@ -173,13 +180,16 @@ h2.flower-right::before {
     display: flex;
     flex-flow: column nowrap;
     gap: 0px;
-    width: 400px;
-    min-width: 400px;
+    max-width: 400px;
+}
+#events-carousel .event:last-child {
+    margin-right: 30px;
 }
 #events-carousel .event img {
     border-radius: 10px;
     width: 100%;
     height: 100%;
+    min-width: 300px;
     aspect-ratio: 1/1;
     object-fit: cover;
 }
@@ -438,14 +448,26 @@ footer p {
         font-size: 24px;
         line-height: 30px;
     }
-    figure img, #slideshow #thumbs img {
+    figure img, #slideshow #thumbs img, #slideshow #current-image img {
         border-radius: 5px !important;
     }
+    #slideshow {
+        gap: 15px !important;
+    }
+    #slideshow #slideshow-images {
+        flex-flow: column nowrap;
+    }
     #slideshow, #slideshow #thumbs {
+        flex-flow: row wrap;
         gap: 6px;
+        order: 1;
     }
     #slideshow #thumbs img {
         min-width: 57px;
+        max-width: 80px;
+    }
+    #slideshow #slideshow-images {
+        width: 100%;
     }
     figure.two-up-images .image-grouping {
         gap: 15px;

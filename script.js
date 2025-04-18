@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Initialize slideshow functionality
 function initializeSlideshow() {
     const slideshow = document.getElementById('slideshow');
-    const featuredImageContainer = document.querySelector('.featured-image');
-    const featuredImage = featuredImageContainer.querySelector('img');
+    const currentImageContainer = document.getElementById('current-image');
+    const featuredImage = currentImageContainer ? currentImageContainer.querySelector('img') : null;
     const thumbnails = document.querySelectorAll('#thumbs img');
     let currentIndex = 0;
     let slideshowInterval;
