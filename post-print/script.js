@@ -48,7 +48,7 @@ function initializeSlideshow() {
     if (!slideshow || !featuredImage || thumbnails.length === 0) return;
 
     // Set up fade transition for featured image
-    featuredImage.style.transition = 'opacity 0.2s ease-in-out';
+    featuredImage.style.transition = 'opacity 2s ease-in-out';
     
     // Function to change the featured image with cross-dissolve effect
     function changeFeaturedImage(index) {
@@ -60,7 +60,7 @@ function initializeSlideshow() {
         oldImage.style.width = '100%';
         oldImage.style.height = 'auto';
         oldImage.style.opacity = '1';
-        oldImage.style.transition = 'opacity 0.2s ease-in-out';
+        oldImage.style.transition = 'opacity 2s ease-in-out';
         
         // Add the clone to the container
         featuredImageContainer.style.position = 'relative';
