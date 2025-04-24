@@ -22,7 +22,7 @@
 }
 
 @media(max-width:600px) {
-    #camera-roll .thumbs {
-        grid-template-columns: repeat(4, 1fr);
+    #camera-roll #thumbs {
+        grid-template-columns: repeat(8, 1fr);
     }
 }
