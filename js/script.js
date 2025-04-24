@@ -40,7 +40,7 @@ function initializeSlideshow() {
     const slideshow = document.getElementById('slideshow');
     const currentImageContainer = document.getElementById('current-image');
     const featuredImage = currentImageContainer ? currentImageContainer.querySelector('img') : null;
-    const thumbnails = document.querySelectorAll('#thumbs img');
+    const thumbnails = document.querySelectorAll('#slideshow #thumbs img');
     let currentIndex = 0;
     let slideshowInterval;
 

@@ -117,10 +117,10 @@ h2.flower-left::before, h2.flower-right::before {
     margin-right: 10px;
 }
 h2.flower-left::before {
-    background-image: url('images/kristoffer-flower.svg');
+    background-image: url('../images/kristoffer-flower.svg');
 }
 h2.flower-right::before {
-    background-image: url('images/elliott-flower.svg');
+    background-image: url('../images/elliott-flower.svg');
 }
 
 /* Slideshow */
