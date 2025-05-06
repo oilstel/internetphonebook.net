@@ -71,7 +71,7 @@ async function init() {
         // If a number key is pressed (0-9), add it to input
         if (e.key >= '0' && e.key <= '9') {
             input.value += e.key;
-            result.innerHTML = `<p>Entering number: ${input.value}</p>`;
+            result.innerHTML = `<p class="number-entered">${input.value}</p>`;
         }
     });
 
