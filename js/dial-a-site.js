@@ -24,11 +24,11 @@ async function init() {
             audioContext = new (window.AudioContext || window.webkitAudioContext)();
         }
     };
-    
+
     // Play DTMF tone
     const playDTMF = (digit) => {
-        // Initialize audio context on first interaction
-        initAudio();
+        initAudio(); // Initialize audio on any button press
+        if (!audioContext) return; // Don't play if audio not initialized
         
         if (!digit || digit === '*') digit = '10';
         if (digit === '#') digit = '11';
