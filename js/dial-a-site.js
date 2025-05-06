@@ -12,16 +12,24 @@ async function init() {
     const dialPad = document.getElementById('dial-pad');
     const result = document.getElementById('result');
     let currentSite = null;
+    let audioContext = null;
 
-    // Create audio context for DTMF tones
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
     // DTMF frequencies
     const rowFreqs = [697, 770, 852, 941];  // Row frequencies
     const colFreqs = [1209, 1336, 1477, 1633];  // Column frequencies
     
+    // Initialize audio context
+    const initAudio = () => {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+    };
+    
     // Play DTMF tone
     const playDTMF = (digit) => {
+        // Initialize audio context on first interaction
+        initAudio();
+        
         if (!digit || digit === '*') digit = '10';
         if (digit === '#') digit = '11';
         if (digit === '0') digit = '12';
