@@ -85,8 +85,8 @@ async function init() {
     // Lookup and display site
     const lookupSite = (number) => {
         if (number < 1 || number > db.length) {
-            result.innerHTML = `<div class="site-title">Invalid number</div>
-                              <div class="site-url">Please enter a number between 1 and ${db.length}</div>`;
+            result.innerHTML = `<div class="site-title">Hmm, that number doesn't exist</div>
+                              <div class="site-url">Please try again</div>`;
             currentSite = null;
             return false;
         }
