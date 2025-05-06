@@ -11,28 +11,83 @@ async function init() {
     const input = document.getElementById('site-number');
     const dialPad = document.getElementById('dial-pad');
     const result = document.getElementById('result');
-    const callButton = form.querySelector('button[type="submit"]');
     let currentSite = null;
+
+    // Create audio context for DTMF tones
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // DTMF frequencies
+    const rowFreqs = [697, 770, 852, 941];  // Row frequencies
+    const colFreqs = [1209, 1336, 1477, 1633];  // Column frequencies
+    
+    // Play DTMF tone
+    const playDTMF = (digit) => {
+        if (!digit || digit === '*') digit = '10';
+        if (digit === '#') digit = '11';
+        if (digit === '0') digit = '12';
+        
+        const num = parseInt(digit) - 1;
+        const row = Math.floor(num / 3);
+        const col = num % 3;
+        
+        const oscillator1 = audioContext.createOscillator();
+        const oscillator2 = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator1.type = 'sine';
+        oscillator2.type = 'sine';
+        
+        oscillator1.frequency.value = rowFreqs[row];
+        oscillator2.frequency.value = colFreqs[col];
+        
+        oscillator1.connect(gainNode);
+        oscillator2.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        gainNode.gain.value = 0.1;
+        
+        oscillator1.start();
+        oscillator2.start();
+        
+        setTimeout(() => {
+            oscillator1.stop();
+            oscillator2.stop();
+        }, 100);
+    };
+
+    // Create audio element for keypad sound
+    const keypadSound = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU');
+    keypadSound.src = '../sounds/dtmf.mp3';  // You'll need to add this sound file
+
+    // Play keypad sound
+    const playKeypadSound = () => {
+        keypadSound.currentTime = 0;
+        keypadSound.play().catch(e => console.log('Audio play failed:', e));
+    };
 
     // Clear function
     const clearAll = () => {
         input.value = '';
         result.innerHTML = `
-                <p>Welcome to <i>dial-a-site</i></p>
-                <p>Enter the site's number in the dial pad below</p>
+            <p>Welcome to <i>dial-a-site</i></p>
+            <p>Enter the site's number in the dial pad below</p>
         `;
         currentSite = null;
-        callButton.classList.remove('pulse');
     };
 
-    // Call function
-    const makeCall = () => {
-        if (currentSite) {
-            window.open(currentSite.url, '_blank');
-            clearAll();
-            return true;
+    // Lookup and display site
+    const lookupSite = (number) => {
+        if (number < 1 || number > db.length) {
+            result.innerHTML = `<div class="site-title">Invalid number</div>
+                              <div class="site-url">Please enter a number between 1 and ${db.length}</div>`;
+            currentSite = null;
+            return false;
         }
-        return false;
+
+        currentSite = db[number - 1];
+        result.innerHTML = `<div class="site-title">${currentSite.title}</div>
+                          <div class="site-url"><a href="${currentSite.url}" target="_blank">${currentSite.url}</a></div>
+                          <div class="visit-button"><a href="${currentSite.url}" target="_blank">Visit</a></div>`;
+        return true;
     };
 
     // Handle dial pad clicks
@@ -43,65 +98,53 @@ async function init() {
             } else if (e.target.type === 'button') {
                 input.value += e.target.textContent;
                 result.innerHTML = `<p class="number-entered">${input.value}</p>`;
+                playDTMF(e.target.textContent);
             }
         }
     });
 
     // Handle keyboard input
     document.addEventListener('keydown', (e) => {
-        // If Escape is pressed, clear everything
         if (e.key === 'Escape') {
             clearAll();
             return;
         }
 
-        // If Enter is pressed, either submit form or make call
         if (e.key === 'Enter') {
-            if (!makeCall()) {
-                form.requestSubmit();
-            }
+            form.requestSubmit();
             return;
         }
 
-        // If a number key is pressed and input is focused, let the default behavior happen
         if (document.activeElement === input) {
             return;
         }
 
-        // If a number key is pressed (0-9), add it to input
         if (e.key >= '0' && e.key <= '9') {
             input.value += e.key;
             result.innerHTML = `<p class="number-entered">${input.value}</p>`;
+            playDTMF(e.key);
         }
     });
 
     // Handle form submission
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-
-        // If we have a current site, open its URL and reset
-        if (makeCall()) return;
-
         const number = parseInt(input.value);
-        input.value = ''; // Clear input after getting the number
-        
-        // Check if number is valid
-        if (number < 1 || number > db.length) {
-            result.innerHTML = `<div class="site-title">Invalid number</div>
-                              <div class="site-url">Please enter a number between 1 and ${db.length}</div>`;
-            currentSite = null;
-            callButton.classList.remove('pulse');
-            return;
-        }
+        input.value = '';
 
-        // Get site info (subtract 1 from number since array is 0-based)
-        currentSite = db[number - 1];
-        
-        // Display result and start pulsing
-        result.innerHTML = `<div class="site-title">${currentSite.title}</div>
-                          <div class="site-url"><a href="${currentSite.url}" target="_blank">${currentSite.url}</a></div>
-                          <div class="visit-button"><a href="${currentSite.url}" target="_blank">Visit</a></div>`;
-        callButton.classList.add('pulse');
+        if (lookupSite(number)) {
+            // Don't open the site automatically, just show it
+            // The user will need to click the Visit button to open it
+        }
+    });
+
+    // Handle visit button clicks
+    result.addEventListener('click', (e) => {
+        if (e.target.classList.contains('visit-button') || e.target.closest('.visit-button')) {
+            if (currentSite) {
+                window.open(currentSite.url, '_blank');
+            }
+        }
     });
 }
 
