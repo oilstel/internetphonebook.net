@@ -4,34 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dial a site - Internet Phone Book</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    main {
+        text-align: center;
+        width: 100%;
+    }
+    footer {
+        margin-top: 0;
+    }
+    footer p {
+        font-size: 16px;
+        text-align: center;
+        width: 100%;
+    }
+  </style>
 </head>
 <body>
     <main>
-        <div id="screen">
-            <div id="result">
-                <p>Welcome to the Internet Phone Book website forwarding service</p>
-                <p>Enter the site number from the phone book in the dial pad below.</p>
+        <div id="phone">
+            <div id="screen">
+                <div id="result">
+                    <p>Welcome to <i>dial-a-site</i></p>
+                    <p>Enter the site's number in the dial pad below</p>
+                </div>
             </div>
+            <form id="dial-form">
+                <input type="number" id="site-number" placeholder="..." min="1">
+                <div id="dial-pad">
+                    <button type="button">1</button>
+                    <button type="button">2</button>
+                    <button type="button">3</button>
+                    <button type="button">4</button>
+                    <button type="button">5</button>
+                    <button type="button">6</button>
+                    <button type="button">7</button>
+                    <button type="button">8</button>
+                    <button type="button">9</button>
+                    <button type="button" class="clear">clear</button>
+                    <button type="button">0</button>
+                    <button type="submit">call</button>
+                </div>
+            </form>
         </div>
-        <form id="dial-form">
-            <input type="number" id="site-number" placeholder="..." min="1">
-            <div id="dial-pad">
-                <button type="button">1</button>
-                <button type="button">2</button>
-                <button type="button">3</button>
-                <button type="button">4</button>
-                <button type="button">5</button>
-                <button type="button">6</button>
-                <button type="button">7</button>
-                <button type="button">8</button>
-                <button type="button">9</button>
-                <button type="button" class="clear">clear</button>
-                <button type="button">0</button>
-                <button type="submit">call</button>
-            </div>
-        </form>
+    
+    
+        <br><br>
+    
+        <footer>
+            <p><a href="../index.html">The Internet Phone Book</a>, 2025</p>
+        </footer>
     </main>
-    <script src="script.js"></script>
+
+    <script src="../js/dial-a-site.js"></script>
 </body>
 </html>
