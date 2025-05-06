@@ -444,6 +444,7 @@ footer p {
 
 /* Dial-a-site */
 #phone {
+    position: relative;
     border-radius: 20px;
     border: 2px solid var(--text-color);
     max-width: 400px;
@@ -513,8 +514,34 @@ footer p {
     font-size: 16px;
     line-height: 20px;
 }
-
-
+#dial-a-site .open-in-new-window {
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 20px;
+    text-align: center;
+    font-style: normal;
+}
+#dial-a-site #dial-flowers-1, #dial-a-site #dial-flowers-2 {
+    position: absolute;
+    object-fit: contain;
+    pointer-events: none;
+}
+#dial-a-site #dial-flowers-1 {
+    top: 50px;
+    left: -250px;
+    width: 250px;
+    height: 300px;
+    object-fit: contain;
+    z-index: 100;
+}   
+#dial-a-site #dial-flowers-2 {
+    position: absolute;
+    bottom: 0;
+    right: -120px;
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
 #phone form {
     display: flex;
     flex-direction: column;
@@ -524,7 +551,6 @@ footer p {
     padding: 0;
     margin: 0;
 }
-
 #phone input[type="number"] {
     width: 200px;
     padding: 10px;
@@ -535,14 +561,12 @@ footer p {
     border-radius: 20px;
     display: none;
 }
-
 #phone #dial-pad {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     width: 250px;
 }
-
 #phone button {
     font-family: 'Times New Roman', Times, serif;
     padding: 15px;
@@ -555,46 +579,17 @@ footer p {
     cursor: pointer;
     font-weight: normal;
 }
-
 #phone button:hover {
     background: #00000013;
 }
-
 #phone button.clear {
     /* background: #ffd900; */
     color: #000000;
 }
-
-#phone button.clear:hover {
-    /* background: #ffd900; */
-}
-
 #phone button[type="submit"] {
     color: #000000;
     /* background: yellow; */
 }
-
-#phone button[type="submit"]:hover {
-    /* background: #1fff26; */
-}
-
-#phone button[type="submit"].pulse {
-    animation: pulse 1.5s infinite;
-    /* background: #1fff26; */
-}
-
-@keyframes pulse {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.8;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
 
 
 /* Mobile */
