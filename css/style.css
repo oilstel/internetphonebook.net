@@ -4,6 +4,9 @@
 }
 
 *, *:before, *:after { box-sizing: border-box; }
+html {
+    overflow-x: hidden;
+}
 body {
     font-family: 'Times New Roman', Times, serif;
     margin: 0;
@@ -630,6 +633,10 @@ footer p {
     }
     #events-carousel .event {
         min-width: initial;
+        width: 300px;
+    }
+    #events-carousel .event img {
+        width: 300px;
     }
     #book-icon {
         max-width: 150px;
