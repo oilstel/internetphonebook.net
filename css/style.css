@@ -547,6 +547,7 @@ footer p {
     border-radius: 80px;
     background: transparent;
     cursor: pointer;
+    font-weight: normal;
 }
 
 #phone button:hover {
