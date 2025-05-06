@@ -471,8 +471,8 @@ footer p {
     line-height: 27px;
 }
 #phone #screen p {
-    font-size: 21px;
-    line-height: 27px;
+    font-size: 19px;
+    line-height: 23px;
     font-style: normal;
 }
 #phone #screen .number-entered {
@@ -497,7 +497,6 @@ footer p {
 }
 #phone #screen a {
     color: #000;
-    font-size: 21px;
     word-break: break-all;
 }
 #phone #result {
@@ -509,6 +508,10 @@ footer p {
 #phone .site-title {
     font-size: 20px;
     margin-bottom: 10px;
+}
+#phone .site-url {
+    font-size: 16px;
+    line-height: 20px;
 }
 
 

@@ -77,7 +77,7 @@ async function init() {
         input.value = '';
         result.innerHTML = `
             <p>Welcome to <i>dial-a-site</i></p>
-            <p>Enter the site's number in the dial pad below</p>
+            <p>Enter the site's number in the dial pad below.</p>
         `;
         currentSite = null;
     };
