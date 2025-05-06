@@ -12,10 +12,60 @@ async function init() {
     const dialPad = document.getElementById('dial-pad');
     const result = document.getElementById('result');
     let currentSite = null;
+    let audioContext = null;
+
+    // DTMF frequencies
+    const rowFreqs = [697, 770, 852, 941];  // Row frequencies
+    const colFreqs = [1209, 1336, 1477, 1633];  // Column frequencies
+    
+    // Initialize audio context
+    const initAudio = () => {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+    };
+    
+    // Play DTMF tone
+    const playDTMF = (digit) => {
+        // Initialize audio context on first interaction
+        initAudio();
+        
+        if (!digit || digit === '*') digit = '10';
+        if (digit === '#') digit = '11';
+        if (digit === '0') digit = '12';
+        
+        const num = parseInt(digit) - 1;
+        const row = Math.floor(num / 3);
+        const col = num % 3;
+        
+        const oscillator1 = audioContext.createOscillator();
+        const oscillator2 = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator1.type = 'sine';
+        oscillator2.type = 'sine';
+        
+        oscillator1.frequency.value = rowFreqs[row];
+        oscillator2.frequency.value = colFreqs[col];
+        
+        oscillator1.connect(gainNode);
+        oscillator2.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        gainNode.gain.value = 0.1;
+        
+        oscillator1.start();
+        oscillator2.start();
+        
+        setTimeout(() => {
+            oscillator1.stop();
+            oscillator2.stop();
+        }, 100);
+    };
 
     // Create audio element for keypad sound
-    const keypadSound = new Audio('data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV');
-    
+    const keypadSound = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU');
+    keypadSound.src = '../sounds/dtmf.mp3';  // You'll need to add this sound file
+
     // Play keypad sound
     const playKeypadSound = () => {
         keypadSound.currentTime = 0;
@@ -56,7 +106,7 @@ async function init() {
             } else if (e.target.type === 'button') {
                 input.value += e.target.textContent;
                 result.innerHTML = `<p class="number-entered">${input.value}</p>`;
-                playKeypadSound();
+                playDTMF(e.target.textContent);
             }
         }
     });
@@ -80,7 +130,7 @@ async function init() {
         if (e.key >= '0' && e.key <= '9') {
             input.value += e.key;
             result.innerHTML = `<p class="number-entered">${input.value}</p>`;
-            playKeypadSound();
+            playDTMF(e.key);
         }
     });
 
