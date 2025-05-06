@@ -1,6 +1,6 @@
 // Fetch the database
 async function fetchDatabase() {
-    const response = await fetch('ipb-db.json');
+    const response = await fetch('../data/ipb-db.json');
     return await response.json();
 }
 
@@ -18,8 +18,8 @@ async function init() {
     const clearAll = () => {
         input.value = '';
         result.innerHTML = `
-                <p>Welcome to the Internet Phone Book website forwarding service</p>
-                <p>Enter the site number from the phone book in the dial pad below.</p>
+                <p>Welcome to <i>dial-a-site</i></p>
+                <p>Enter the site's number in the dial pad below</p>
         `;
         currentSite = null;
         callButton.classList.remove('pulse');
@@ -42,7 +42,7 @@ async function init() {
                 clearAll();
             } else if (e.target.type === 'button') {
                 input.value += e.target.textContent;
-                result.innerHTML = `<p>Entering number: ${input.value}</p>`;
+                result.innerHTML = `<p class="number-entered">${input.value}</p>`;
             }
         }
     });
@@ -99,7 +99,8 @@ async function init() {
         
         // Display result and start pulsing
         result.innerHTML = `<div class="site-title">${currentSite.title}</div>
-                          <div class="site-url"><a href="${currentSite.url}" target="_blank">${currentSite.url}</a></div>`;
+                          <div class="site-url"><a href="${currentSite.url}" target="_blank">${currentSite.url}</a></div>
+                          <div class="visit-button"><a href="${currentSite.url}" target="_blank">Visit</a></div>`;
         callButton.classList.add('pulse');
     });
 }
