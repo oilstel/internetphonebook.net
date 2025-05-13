@@ -92,7 +92,7 @@
       flex: 1;
     }
     
-    button {
+    button, #arena-gift-shop-link {
       font-family: 'Times New Roman', Times, serif;
       font-style: italic;
       font-size: 26px;
@@ -128,6 +128,31 @@
     
     .result-card p:last-child {
       margin-bottom: 0;
+    }
+    
+    #get-a-copy {
+      margin-top: 60px;
+      border-top: 2px dotted var(--text-color);
+      padding-top: 20px;
+    }
+    
+    #get-a-copy p {
+      font-size: 30px;
+      line-height: 38px;
+      margin-bottom: 20px;
+    }
+    
+    #arena-gift-shop-link {
+      display: inline-block;
+      padding: 10px 25px;
+      border: 2px solid var(--text-color);
+      border-radius: 50px;
+      text-decoration: none;
+      margin-bottom: 30px;
+    }
+    
+    #arena-gift-shop-link:hover {
+      background: #00000013;
     }
     
     footer {
@@ -207,6 +232,16 @@
         font-size: 18px;
         line-height: 24px;
       }
+      
+      #get-a-copy p {
+        font-size: 22px;
+        line-height: 28px;
+      }
+      
+      #arena-gift-shop-link {
+        padding: 8px 20px;
+        font-size: 22px;
+      }
     }
   </style>
 </head>
@@ -221,6 +256,11 @@
 
         <div id="site-lookup-results">
             
+        </div>
+
+        <div id="get-a-copy" style="display: none;">
+            <p>Purchase a copy of the Internet Phone Book on the Are.na gift shop.</p>
+            <a href="https://store.are.na/" id="arena-gift-shop-link">Are.na gift shop</a>
         </div>
     
         <footer>
@@ -257,16 +297,19 @@
                 const urlInput = document.getElementById('site-url').value.trim();
                 if (!urlInput) {
                     resultsDiv.innerHTML = '<p class="error">Please enter a URL</p>';
+                    document.getElementById('get-a-copy').style.display = 'none';
                     return;
                 }
 
                 if (!dbData) {
                     resultsDiv.innerHTML = '<p class="error">Database not loaded yet. Please try again in a moment.</p>';
+                    document.getElementById('get-a-copy').style.display = 'none';
                     return;
                 }
 
                 // Show loading indicator
                 resultsDiv.innerHTML = '<p class="loading">Searching the Internet Phone Book...</p>';
+                document.getElementById('get-a-copy').style.display = 'none';
 
                 // Search with a slight delay to ensure the loading indicator is visible
                 setTimeout(() => {
@@ -311,6 +354,8 @@
                     // Display results
                     if (exactMatches.length === 0 && partialMatches.length === 0) {
                         resultsDiv.innerHTML = '<p>No matches found in the Internet Phone Book.</p>';
+                        // Hide get-a-copy for no results
+                        document.getElementById('get-a-copy').style.display = 'none';
                         return;
                     }
 
@@ -343,6 +388,9 @@
                     }
                     
                     resultsDiv.innerHTML = resultsHTML;
+                    
+                    // Show the get-a-copy section after search
+                    document.getElementById('get-a-copy').style.display = 'block';
                 }, 500);
             });
         });
