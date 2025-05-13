@@ -397,49 +397,49 @@
 
                     // Display results
                     if (exactMatches.length === 0 && partialMatches.length === 0) {
-                        resultsDiv.innerHTML = '<p>No matches found in the Internet Phone Book.</p>';
+                        resultsDiv.innerHTML = '<p>No entries found matching your search. Try a different name or website.</p>';
                         // Hide get-a-copy for no results
                         document.getElementById('get-a-copy').style.display = 'none';
                         return;
                     }
 
-                    let resultsHTML = '';
+                    // Combine all matches into a single array and ensure no duplicates
+                    const allMatches = [...exactMatches];
                     
-                    if (exactMatches.length > 0) {
-                        resultsHTML += '<h2>Exact Matches</h2>';
-                        exactMatches.forEach(match => {
-                            const isUrlMatch = searchInput.includes('.') && !searchInput.includes(' ');
-                            const matchType = isUrlMatch ? 'URL: ' : 'Name: ';
-                            const highlightedValue = isUrlMatch ? match.url : match.title;
-                            
-                            resultsHTML += `
-                                <div class="result-card">
-                                    <h3>${match.title}</h3>
-                                    <p><a href="${match.url}" target="_blank">${match.url}</a></p>
-                                    <p>Size: ${match.size}</p>
-                                    <p class="match-reason">Matched by ${matchType}<strong>${highlightedValue}</strong></p>
-                                </div>
-                            `;
-                        });
-                    }
+                    // Add partial matches that aren't already in exactMatches
+                    partialMatches.forEach(match => {
+                        if (!exactMatches.some(exactMatch => exactMatch.url === match.url)) {
+                            allMatches.push(match);
+                        }
+                    });
                     
-                    if (partialMatches.length > 0) {
-                        resultsHTML += '<h2>Related Matches</h2>';
-                        partialMatches.forEach(match => {
-                            const isUrlMatch = searchInput.includes('.') && !searchInput.includes(' ');
-                            const matchType = isUrlMatch ? 'URL contains: ' : 'Name contains: ';
-                            const highlightedValue = isUrlMatch ? match.url : match.title;
-                            
-                            resultsHTML += `
-                                <div class="result-card">
-                                    <h3>${match.title}</h3>
-                                    <p><a href="${match.url}" target="_blank">${match.url}</a></p>
-                                    <p>Size: ${match.size}</p>
-                                    <p class="match-reason">Matched by ${matchType}<strong>${searchInput}</strong></p>
-                                </div>
-                            `;
-                        });
-                    }
+                    // Sort results: exact matches first, then alphabetically by title
+                    allMatches.sort((a, b) => {
+                        // First prioritize exact matches
+                        const aIsExact = exactMatches.includes(a);
+                        const bIsExact = exactMatches.includes(b);
+                        
+                        if (aIsExact && !bIsExact) return -1;
+                        if (!aIsExact && bIsExact) return 1;
+                        
+                        // Then sort alphabetically by title
+                        return a.title.localeCompare(b.title);
+                    });
+                    
+                    let resultsHTML = `<h2>Found ${allMatches.length} ${allMatches.length === 1 ? 'entry' : 'entries'}</h2>`;
+                    
+                    allMatches.forEach(match => {
+                        const isUrlMatch = searchInput.includes('.') && !searchInput.includes(' ');
+                        const matchType = isUrlMatch ? 'Website' : 'Name';
+                        
+                        resultsHTML += `
+                            <div class="result-card">
+                                <h3>${match.title}</h3>
+                                <p><a href="${match.url}" target="_blank">${match.url}</a></p>
+                                <p>Size: ${match.size}</p>
+                            </div>
+                        `;
+                    });
                     
                     resultsDiv.innerHTML = resultsHTML;
                     
