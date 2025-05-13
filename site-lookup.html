@@ -250,7 +250,7 @@
         <h1>Enter the website you submitted to the Internet Phone Book</h1>
 
         <form id="site-lookup-form">
-            <input type="text" id="site-url" placeholder="https://example.com">
+            <input type="text" id="site-url" placeholder="url or name">
             <button type="submit">Lookup</button>
         </form>
 
@@ -314,41 +314,62 @@
                 // Search with a slight delay to ensure the loading indicator is visible
                 setTimeout(() => {
                     // Normalize input URL for better matching
-                    let searchUrl = urlInput.toLowerCase();
+                    let searchInput = urlInput.toLowerCase();
                     
-                    // If URL doesn't have protocol, try matching without protocol
-                    let searchWithoutProtocol = searchUrl;
-                    if (searchUrl.startsWith('http://')) {
-                        searchWithoutProtocol = searchUrl.substring(7);
-                    } else if (searchUrl.startsWith('https://')) {
-                        searchWithoutProtocol = searchUrl.substring(8);
-                    } else {
-                        // Add protocol if not present for one version of the search
-                        searchUrl = 'https://' + searchUrl;
+                    // Handle URL search
+                    let searchUrl = searchInput;
+                    let searchWithoutProtocol = searchInput;
+                    
+                    // If input looks like a URL, normalize it for URL matching
+                    if (searchInput.includes('.') && !searchInput.includes(' ')) {
+                        if (searchInput.startsWith('http://')) {
+                            searchWithoutProtocol = searchInput.substring(7);
+                        } else if (searchInput.startsWith('https://')) {
+                            searchWithoutProtocol = searchInput.substring(8);
+                        } else {
+                            // Add protocol if not present for one version of the search
+                            searchUrl = 'https://' + searchInput;
+                        }
+                        
+                        // Remove trailing slash if present
+                        searchUrl = searchUrl.replace(/\/$/, '');
+                        searchWithoutProtocol = searchWithoutProtocol.replace(/\/$/, '');
                     }
                     
-                    // Remove trailing slash if present
-                    searchUrl = searchUrl.replace(/\/$/, '');
-                    searchWithoutProtocol = searchWithoutProtocol.replace(/\/$/, '');
-                    
-                    // Search for exact and partial matches
+                    // Search for matches by URL and title
                     const exactMatches = dbData.filter(entry => {
-                        const entryUrl = entry.url.toLowerCase().replace(/\/$/, '');
-                        const entryWithoutProtocol = entryUrl.replace(/^https?:\/\//, '');
+                        // URL exact match
+                        if (searchInput.includes('.') && !searchInput.includes(' ')) {
+                            const entryUrl = entry.url.toLowerCase().replace(/\/$/, '');
+                            const entryWithoutProtocol = entryUrl.replace(/^https?:\/\//, '');
+                            
+                            return entryUrl === searchUrl || 
+                                   entryWithoutProtocol === searchWithoutProtocol ||
+                                   'https://' + entryWithoutProtocol === searchUrl;
+                        }
                         
-                        return entryUrl === searchUrl || 
-                               entryWithoutProtocol === searchWithoutProtocol ||
-                               'https://' + entryWithoutProtocol === searchUrl;
+                        // Title exact match (case insensitive)
+                        return entry.title.toLowerCase() === searchInput;
                     });
                     
                     const partialMatches = dbData.filter(entry => {
-                        const entryUrl = entry.url.toLowerCase();
-                        const entryWithoutProtocol = entryUrl.replace(/^https?:\/\//, '');
-                        
-                        return !exactMatches.includes(entry) && (
-                            entryWithoutProtocol.includes(searchWithoutProtocol) || 
-                            searchWithoutProtocol.includes(entryWithoutProtocol)
-                        );
+                        if (!exactMatches.includes(entry)) {
+                            // URL partial match
+                            if (searchInput.includes('.') && !searchInput.includes(' ')) {
+                                const entryUrl = entry.url.toLowerCase();
+                                const entryWithoutProtocol = entryUrl.replace(/^https?:\/\//, '');
+                                
+                                return entryWithoutProtocol.includes(searchWithoutProtocol) || 
+                                       searchWithoutProtocol.includes(entryWithoutProtocol);
+                            }
+                            
+                            // Title partial match
+                            return entry.title.toLowerCase().includes(searchInput) ||
+                                   searchInput.length >= 3 && entry.title.toLowerCase().split(' ').some(word => 
+                                        word.includes(searchInput) || searchInput.includes(word)
+                                   );
+                        }
+                        return false;
                     });
 
                     // Display results
