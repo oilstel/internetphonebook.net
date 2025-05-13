@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Site lookup - Internet Phone Book</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      --text-color: #000;
+      --bg-color: #FFFDCC;
+    }
+    
+    *, *:before, *:after { box-sizing: border-box; }
+    
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale; 
+      -webkit-text-size-adjust: none;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      padding: 20px 30px;
+      overflow-x: hidden;
+    }
+    
+    main {
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-family: Times;
+      font-size: 8dvw;
+      font-weight: normal;
+      margin: 0;
+      margin-bottom: 30px;
+      z-index: 100;
+    }
+    
+    p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 40px;
+      line-height: 52px;
+      margin: 0;
+      margin-bottom: 40px;
+    }
+    
+    h2 {
+      font-family: Times;
+      font-size: 40px;
+      font-weight: bold;
+      margin: 0;
+      margin-bottom: 40px;
+      border-top: 2px dotted var(--text-color);
+      padding-top: 10px;
+    }
+    
+    h3 {
+      font-size: 26px;
+      line-height: 32px;
+    }
+    
+    a {
+      font-family: 'Times New Roman', Times, serif;
+      color: var(--text-color);
+      text-decoration-color: var(--text-color);
+      text-decoration-thickness: 2px;
+      text-decoration-style: dotted; 
+      text-underline-offset: 3px;
+    }
+    
+    #site-lookup-form {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 10px;
+      margin-bottom: 40px;
+      max-width: 700px;
+    }
+    
+    #site-url {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 26px;
+      background-color: transparent;
+      color: var(--text-color);
+      border: 2px solid var(--text-color);
+      padding: 8px 12px;
+      outline: 0;
+      flex: 1;
+    }
+    
+    button {
+      font-family: 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 26px;
+      padding: 0.5rem 1rem;
+      color: var(--text-color);
+      background: transparent;
+      border: 2px solid var(--text-color);
+      border-radius: 50px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background: #00000013;
+    }
+    
+    .result-card {
+      border: 2px solid var(--text-color);
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    
+    .result-card h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    
+    .result-card p {
+      font-size: 22px;
+      line-height: 30px;
+      margin-bottom: 15px;
+    }
+    
+    .result-card p:last-child {
+      margin-bottom: 0;
+    }
+    
+    footer {
+      text-align: right;
+      margin-top: 100px;
+      border-top: 2px dotted var(--text-color);
+      padding-top: 20px;
+    }
+    
+    footer p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 20px;
+      line-height: 24px;
+      margin-bottom: 0;
+    }
+    
+    .error {
+      color: red;
+      font-style: italic;
+    }
+    
+    .loading {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-style: italic;
+      font-size: 26px;
+    }
+    
+    .loading::before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--text-color);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    @media(max-width: 805px) {
+      body {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 65px;
+        line-height: 65px;
+      }
+      
+      h2 {
+        font-size: 30px;
+      }
+      
+      p {
+        font-size: 24px;
+        line-height: 30px;
+      }
+      
+      #site-lookup-form {
+        flex-direction: column;
+      }
+      
+      #site-url {
+        width: 100%;
+        font-size: 22px;
+      }
+      
+      button {
+        align-self: flex-start;
+      }
+      
+      .result-card p {
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <main>
+        <h1>Enter the website you submitted to the Internet Phone Book</h1>
+
+        <form id="site-lookup-form">
+            <input type="text" id="site-url" placeholder="https://example.com">
+            <button type="submit">Lookup</button>
+        </form>
+
+        <div id="site-lookup-results">
+            
+        </div>
+    
+        <footer>
+            <p><a href="../index.html">The Internet Phone Book</a>, 2025</p>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('site-lookup-form');
+            const resultsDiv = document.getElementById('site-lookup-results');
+            let dbData = null;
+
+            // Fetch the database
+            fetch('./data/ipb-db.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load database');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    dbData = data;
+                    console.log('Database loaded successfully');
+                })
+                .catch(error => {
+                    resultsDiv.innerHTML = `<p class="error">Error loading database: ${error.message}</p>`;
+                    console.error('Error loading database:', error);
+                });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const urlInput = document.getElementById('site-url').value.trim();
+                if (!urlInput) {
+                    resultsDiv.innerHTML = '<p class="error">Please enter a URL</p>';
+                    return;
+                }
+
+                if (!dbData) {
+                    resultsDiv.innerHTML = '<p class="error">Database not loaded yet. Please try again in a moment.</p>';
+                    return;
+                }
+
+                // Show loading indicator
+                resultsDiv.innerHTML = '<p class="loading">Searching the Internet Phone Book...</p>';
+
+                // Search with a slight delay to ensure the loading indicator is visible
+                setTimeout(() => {
+                    // Normalize input URL for better matching
+                    let searchUrl = urlInput.toLowerCase();
+                    
+                    // If URL doesn't have protocol, try matching without protocol
+                    let searchWithoutProtocol = searchUrl;
+                    if (searchUrl.startsWith('http://')) {
+                        searchWithoutProtocol = searchUrl.substring(7);
+                    } else if (searchUrl.startsWith('https://')) {
+                        searchWithoutProtocol = searchUrl.substring(8);
+                    } else {
+                        // Add protocol if not present for one version of the search
+                        searchUrl = 'https://' + searchUrl;
+                    }
+                    
+                    // Remove trailing slash if present
+                    searchUrl = searchUrl.replace(/\/$/, '');
+                    searchWithoutProtocol = searchWithoutProtocol.replace(/\/$/, '');
+                    
+                    // Search for exact and partial matches
+                    const exactMatches = dbData.filter(entry => {
+                        const entryUrl = entry.url.toLowerCase().replace(/\/$/, '');
+                        const entryWithoutProtocol = entryUrl.replace(/^https?:\/\//, '');
+                        
+                        return entryUrl === searchUrl || 
+                               entryWithoutProtocol === searchWithoutProtocol ||
+                               'https://' + entryWithoutProtocol === searchUrl;
+                    });
+                    
+                    const partialMatches = dbData.filter(entry => {
+                        const entryUrl = entry.url.toLowerCase();
+                        const entryWithoutProtocol = entryUrl.replace(/^https?:\/\//, '');
+                        
+                        return !exactMatches.includes(entry) && (
+                            entryWithoutProtocol.includes(searchWithoutProtocol) || 
+                            searchWithoutProtocol.includes(entryWithoutProtocol)
+                        );
+                    });
+
+                    // Display results
+                    if (exactMatches.length === 0 && partialMatches.length === 0) {
+                        resultsDiv.innerHTML = '<p>No matches found in the Internet Phone Book.</p>';
+                        return;
+                    }
+
+                    let resultsHTML = '';
+                    
+                    if (exactMatches.length > 0) {
+                        resultsHTML += '<h2>Exact Matches</h2>';
+                        exactMatches.forEach(match => {
+                            resultsHTML += `
+                                <div class="result-card">
+                                    <h3>${match.title}</h3>
+                                    <p><a href="${match.url}" target="_blank">${match.url}</a></p>
+                                    <p>Size: ${match.size}</p>
+                                </div>
+                            `;
+                        });
+                    }
+                    
+                    if (partialMatches.length > 0) {
+                        resultsHTML += '<h2>Related Matches</h2>';
+                        partialMatches.forEach(match => {
+                            resultsHTML += `
+                                <div class="result-card">
+                                    <h3>${match.title}</h3>
+                                    <p><a href="${match.url}" target="_blank">${match.url}</a></p>
+                                    <p>Size: ${match.size}</p>
+                                </div>
+                            `;
+                        });
+                    }
+                    
+                    resultsDiv.innerHTML = resultsHTML;
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
