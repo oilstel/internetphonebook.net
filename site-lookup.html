@@ -130,6 +130,19 @@
       margin-bottom: 0;
     }
     
+    .match-reason {
+      font-size: 18px;
+      line-height: 24px;
+      font-style: italic;
+      color: #555;
+      margin-top: 10px;
+    }
+    
+    .match-reason strong {
+      font-style: normal;
+      color: var(--text-color);
+    }
+    
     #get-a-copy {
       margin-top: 60px;
       border-top: 2px dotted var(--text-color);
@@ -233,6 +246,11 @@
         line-height: 24px;
       }
       
+      .match-reason {
+        font-size: 16px;
+        line-height: 20px;
+      }
+      
       #get-a-copy p {
         font-size: 22px;
         line-height: 28px;
@@ -247,10 +265,10 @@
 </head>
 <body>
     <main>
-        <h1>Enter the website you submitted to the Internet Phone Book</h1>
+        <h1>Check if your site is in the Internet Phone Book.</h1>
 
         <form id="site-lookup-form">
-            <input type="text" id="site-url" placeholder="url or name">
+            <input type="text" id="site-url" placeholder="your name or your website">
             <button type="submit">Lookup</button>
         </form>
 
@@ -365,9 +383,14 @@
                             
                             // Title partial match
                             return entry.title.toLowerCase().includes(searchInput) ||
-                                   searchInput.length >= 3 && entry.title.toLowerCase().split(' ').some(word => 
-                                        word.includes(searchInput) || searchInput.includes(word)
-                                   );
+                                   (searchInput.length >= 3 && (
+                                       // Match individual words in the title
+                                       entry.title.toLowerCase().split(' ').some(word => 
+                                           word.startsWith(searchInput) || searchInput.startsWith(word)
+                                       ) ||
+                                       // Match initials (for people's names)
+                                       searchInput === entry.title.split(/\s+/).map(word => word[0]?.toLowerCase()).join('')
+                                   ));
                         }
                         return false;
                     });
@@ -385,11 +408,16 @@
                     if (exactMatches.length > 0) {
                         resultsHTML += '<h2>Exact Matches</h2>';
                         exactMatches.forEach(match => {
+                            const isUrlMatch = searchInput.includes('.') && !searchInput.includes(' ');
+                            const matchType = isUrlMatch ? 'URL: ' : 'Name: ';
+                            const highlightedValue = isUrlMatch ? match.url : match.title;
+                            
                             resultsHTML += `
                                 <div class="result-card">
                                     <h3>${match.title}</h3>
                                     <p><a href="${match.url}" target="_blank">${match.url}</a></p>
                                     <p>Size: ${match.size}</p>
+                                    <p class="match-reason">Matched by ${matchType}<strong>${highlightedValue}</strong></p>
                                 </div>
                             `;
                         });
@@ -398,11 +426,16 @@
                     if (partialMatches.length > 0) {
                         resultsHTML += '<h2>Related Matches</h2>';
                         partialMatches.forEach(match => {
+                            const isUrlMatch = searchInput.includes('.') && !searchInput.includes(' ');
+                            const matchType = isUrlMatch ? 'URL contains: ' : 'Name contains: ';
+                            const highlightedValue = isUrlMatch ? match.url : match.title;
+                            
                             resultsHTML += `
                                 <div class="result-card">
                                     <h3>${match.title}</h3>
                                     <p><a href="${match.url}" target="_blank">${match.url}</a></p>
                                     <p>Size: ${match.size}</p>
+                                    <p class="match-reason">Matched by ${matchType}<strong>${searchInput}</strong></p>
                                 </div>
                             `;
                         });
