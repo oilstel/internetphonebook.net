@@ -100,6 +100,13 @@ figure.two-up-images img {
     width: 100%;
     border-radius: 10px;
 }
+a#buy-now-button {
+    border: 2px solid var(--text-color);
+    background-color: #ffef17;
+    border-radius: 30px;
+    text-decoration: none;
+    padding: 10px 25px;
+}
 
 
 /* Flowers */
