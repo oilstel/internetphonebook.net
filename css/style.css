@@ -809,40 +809,41 @@ footer p {
     text-underline-offset: 5px;
 }
 
-@media (max-width: 805px) {
-    #stocklist-list {
-        font-size: 24px;
+@media (max-width: 600px) {
+    #stocklist-list  {
+        margin: 0;
     }
-    
     #stocklist-list li {
-        display: grid;
-        grid-template-columns: 1fr;
+        flex-flow: column nowrap;
+        border-bottom: 1px dashed var(--text-color);
+        padding: 20px 0;
     }
-    
+    #stocklist-list .shop-name, #stocklist-list .location, #stocklist-list .link {
+        padding: 0;
+    }
     #stocklist-list .shop-name {
-        width: 100%;
-        margin-bottom: 5px;
-        grid-column: 1;
-        grid-row: 1;
+        font-weight: bold;
     }
-    
-    /* #stocklist-list .dots-left,
     #stocklist-list .dots-right {
         display: none;
-    } */
-    
-    #stocklist-list .location {
-        grid-column: 1;
-        grid-row: 2;
-        padding-left: 0;
     }
-    
+    #stocklist-list .dots-left {
+        display: none;
+    }
+    #stocklist-list .dots-left, #stocklist-list .dots-right {
+        align-self: flex-start;
+        margin-bottom: 0;
+    }
     #stocklist-list .link {
-        grid-column: 1;
-        grid-row: 3;
-        text-align: left;
-        justify-self: start;
-        padding-left: 0;
-        margin-top: 5px;
+        margin-top: 10px;
+    }
+    #stocklist-list .link a {
+        display: inline-block;
+        border: 1px solid var(--text-color);
+        padding: 10px 30px;
+        border-radius: 40px;
+        text-decoration: none;
+
+    }
     }
 }
