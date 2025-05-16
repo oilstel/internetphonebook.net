@@ -35,6 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeSlideshow();
 }); 
 
+// Debounce function to limit how often a function is called during window resize
+function debounce(func, wait) {
+    let timeout;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+}
+
 // Initialize slideshow functionality
 function initializeSlideshow() {
     const slideshow = document.getElementById('slideshow');
