@@ -64,7 +64,6 @@ async function init() {
 
     // Create audio element for keypad sound
     const keypadSound = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU');
-    keypadSound.src = '../sounds/dtmf.mp3';  // You'll need to add this sound file
 
     // Play keypad sound
     const playKeypadSound = () => {
