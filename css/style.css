@@ -731,6 +731,17 @@ footer p {
         font-size: 16px;
         
     }
+
+    /* Badge Generator Mobile */
+    .badge-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 100%;
+    }
+
+    .preview {
+        min-height: 200px;
+    }
 }
 
 /* Phonebook style */
@@ -843,7 +854,128 @@ footer p {
         padding: 10px 30px;
         border-radius: 40px;
         text-decoration: none;
+    }
+}
 
-    }
-    }
+/* Badge Generator */
+.badge-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.preview {
+  background: var(--bg-color);
+  border: 2px dotted var(--text-color);
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.controls input {
+  font-size: 18px;
+  padding: 10px;
+  border: 2px dotted var(--text-color);
+  background: transparent;
+  width: 100%;
+}
+
+.controls .hint {
+  font-style: italic;
+  font-size: 16px;
+  color: #666;
+}
+
+#generate {
+  background: var(--text-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: opacity 0.2s;
+}
+
+#generate:hover {
+  opacity: 0.8;
+}
+
+.badge {
+  background: var(--bg-color);
+  border: 2px solid var(--text-color);
+  padding: 20px;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.badge h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.badge .number {
+  font-size: 32px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.badge .number span {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  border: 2px solid var(--text-color);
+  border-radius: 50%;
+  line-height: 41px;
+}
+
+.copy-area {
+  margin-top: 20px;
+  display: none;
+}
+
+.copy-area textarea {
+  width: 100%;
+  height: 100px;
+  font-family: monospace;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.copy-button, .download-button {
+  background: var(--text-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 15px;
+  flex: 1;
+}
+
+.copy-button:hover, .download-button:hover {
+  opacity: 0.8;
 }

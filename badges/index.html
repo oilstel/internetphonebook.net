@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Badges</title>
+
+  <link rel="stylesheet" href="../css/style.css?v=1.4">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <h1>Badges</h1>
+
+  <h2>Make a badge</h2>
+  
+  <div class="badge-container">
+    <div class="preview"></div>
+    <div class="controls">
+      <input type="text" id="number" placeholder="Your phone book number">
+      <p class="hint">Find this number in the internet phone book next to your website</p>
+      <button id="generate">Create Badge</button>
+    </div>
+    <div class="copy-area">
+      <p>Copy this HTML to add the badge to your website:</p>
+      <textarea id="badge-html" readonly></textarea>
+      <div class="button-group">
+        <button class="copy-button">Copy HTML</button>
+        <button class="download-button">Download as JPG</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const preview = document.querySelector('.preview');
+      const numberInput = document.getElementById('number');
+      const generateBtn = document.getElementById('generate');
+      const copyArea = document.querySelector('.copy-area');
+      const badgeHtml = document.getElementById('badge-html');
+      const copyButton = document.querySelector('.copy-button');
+      const downloadButton = document.querySelector('.download-button');
+
+      function generateBadge(number) {
+        const badge = `<iframe src="dial-a-site-badge.html?number=${number}" width="254" height="220" frameborder="0" style="border: 2px solid #000;"></iframe>`;
+        
+        return badge;
+      }
+
+      generateBtn.addEventListener('click', () => {
+        const number = numberInput.value.trim();
+        
+        if (!number || !/^\d{1,3}$/.test(number)) {
+          alert('Please enter a valid 1-3 digit phone book number');
+          return;
+        }
+
+        const badge = generateBadge(number);
+        preview.innerHTML = badge;
+        
+        // Show copy area and update HTML
+        copyArea.style.display = 'block';
+        badgeHtml.value = badge.trim();
+      });
+
+      copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(badgeHtml.value);
+          copyButton.textContent = 'Copied!';
+          setTimeout(() => {
+            copyButton.textContent = 'Copy HTML';
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+          alert('Failed to copy to clipboard. Please copy the text manually.');
+        }
+      });
+
+      downloadButton.addEventListener('click', () => {
+        const iframeElement = preview.querySelector('iframe');
+        if (!iframeElement) {
+          alert('Please generate a badge first');
+          return;
+        }
+
+        // Try to access the badge element inside the iframe
+        try {
+          const iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
+          const badgeElement = iframeDoc.querySelector('.badge');
+          
+          if (!badgeElement) {
+            alert('Badge not found. Please wait for the badge to load and try again.');
+            return;
+          }
+
+          // Use html2canvas to convert the badge div to image
+          html2canvas(badgeElement, {
+            backgroundColor: '#FFFDCC',
+            scale: 2, // Higher resolution
+            useCORS: true
+          }).then(canvas => {
+            // Convert to blob and download
+            canvas.toBlob((blob) => {
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `internet-phone-book-badge-${numberInput.value.trim()}.jpg`;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+            }, 'image/jpeg', 0.9);
+          }).catch(err => {
+            console.error('Error generating image:', err);
+            alert('Failed to generate image. Please try again.');
+          });
+        } catch (err) {
+          console.error('Cannot access iframe content:', err);
+          alert('Cannot access iframe content. This may be due to browser security restrictions.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
