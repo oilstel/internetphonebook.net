@@ -41,9 +41,10 @@
       const downloadButton = document.querySelector('.download-button');
 
       function generateBadge(number) {
-        const badge = `<iframe src="dial-a-site-badge.html?number=${number}" width="254" height="220" frameborder="0" style="border: 2px solid #000;"></iframe>`;
+        const previewBadge = `<iframe src="dial-a-site-badge.html?number=${number}" width="254" height="220" frameborder="0" style="border: 2px solid #000;"></iframe>`;
+        const copyBadge = `<iframe src="https://internetphonebook.net/badges/dial-a-site-badge.html?number=${number}" width="254" height="220" frameborder="0" style="border: 2px solid #000;"></iframe>`;
         
-        return badge;
+        return { preview: previewBadge, copy: copyBadge };
       }
 
       generateBtn.addEventListener('click', () => {
@@ -55,11 +56,11 @@
         }
 
         const badge = generateBadge(number);
-        preview.innerHTML = badge;
+        preview.innerHTML = badge.preview;
         
         // Show copy area and update HTML
         copyArea.style.display = 'block';
-        badgeHtml.value = badge.trim();
+        badgeHtml.value = badge.copy.trim();
       });
 
       copyButton.addEventListener('click', async () => {
