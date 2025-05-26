@@ -75,7 +75,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: rgba(0, 0, 0, 0.064);
       padding: 20px;
     }
 
@@ -89,6 +88,7 @@
       padding: 12px;
       font-size: 18px;
       border: 2px solid var(--text-color);
+      background-color: var(--bg-color);
       border-radius: 5px;
       font-family: inherit;
     }
@@ -137,7 +137,7 @@
     .copy-button, .download-button {
       padding: 10px 20px;
       font-size: 16px;
-      background-color: #fff;
+      background-color: var(--bg-color);
       border: 2px solid var(--text-color);
       border-radius: 5px;
       cursor: pointer;
@@ -145,7 +145,7 @@
     }
 
     .copy-button:hover, .download-button:hover {
-      background-color: #f0f0f0;
+      background-color: var(--bg-color);
     }
 
     select {
@@ -154,7 +154,7 @@
       border: 2px solid var(--text-color);
       border-radius: 5px;
       font-family: inherit;
-      background-color: white;
+      background-color: var(--bg-color);
     }
 
     @media(max-width: 805px) {
@@ -239,11 +239,12 @@
   </style>
 </head>
 <body>
+    <a href="../index.html">Internet Phone Book</a>
+
   <h1>Dial-a-site badges</h1>
 
-  <a href="../index.html">Back home</a>
 
-  <hr>
+  <br>
 
   <h2>Create a badge</h2>
   
@@ -331,6 +332,14 @@
       <button class="copy-button" onclick="copyBadgeCode(this)">Copy HTML</button>
     </div>
   </div>
+
+  <br>
+
+  <hr>
+
+  <br>
+
+  <a href="../index.html">Back to the homepage</a>
 
   <script>
     // Function to copy badge code for static badges (needs to be global for onclick)
