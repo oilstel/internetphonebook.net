@@ -97,6 +97,21 @@ async function init() {
         return true;
     };
 
+    // Check for ?call= parameter and auto-dial
+    const urlParams = new URLSearchParams(window.location.search);
+    const callNumber = urlParams.get('call');
+    if (callNumber) {
+        const number = parseInt(callNumber);
+        if (!isNaN(number)) {
+            input.value = callNumber;
+            result.innerHTML = `<p class="number-entered">${callNumber}</p>`;
+            // Small delay to show the number being entered, then lookup
+            setTimeout(() => {
+                lookupSite(number);
+            }, 500);
+        }
+    }
+
     // Handle dial pad clicks
     dialPad.addEventListener('click', (e) => {
         if (e.target.tagName === 'BUTTON') {

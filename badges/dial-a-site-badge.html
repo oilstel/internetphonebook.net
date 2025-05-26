@@ -258,7 +258,7 @@
   <div class="content-container">
       <div class="content">
         <h3>This website is listed in the Internet Phone Book</h3>
-        <p>You can <a href="https://internetphonebook.net/#?call=${number}#dial-a-site" target="_blank">dial-this-site</a> at:</p>
+        <p>You can <a href="https://internetphonebook.net/#?call=${number}&issue=1#dial-a-site" target="_blank">dial-this-site</a> at:</p>
       </div>
       <div class="number">
         ${number.split('').map(n => `<span onclick="playDTMF('${n}')">${n}</span>`).join('')}
