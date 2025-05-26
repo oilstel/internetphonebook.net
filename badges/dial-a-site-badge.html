@@ -3,109 +3,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Internet Phone Book Badge</title>
+  <title>Internet Phone Book Dial-a-Site Badge</title>
   
   <style>
-    :root {
-      --text-color: #000;
-      --bg-color: #FFFDCC;
-    }
+     :root {
+          --text-color: #000;
+          --bg-color: #FFFDCC;
+     }
 
-    *, *:before, *:after { 
-      box-sizing: border-box; 
-    }
+     *, *:before, *:after { 
+          box-sizing: border-box; 
+     }
 
-    body {
-      font-family: 'Times New Roman', Times, serif;
-      margin: 0;
-      padding: 10px;
-      color: var(--text-color);
-      background-color: var(--bg-color);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: calc(100vh - 20px);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+     body {
+          font-family: 'Times New Roman', Times, serif;
+          margin: 0;
+          padding: 0px;
+          color: var(--text-color);
+          background-color: var(--bg-color);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: calc(100vh - 20px);
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+     }
+     #content {
+        height: 100dvh;
+     }
 
-    p {
-      font-family: 'Times New Roman', Times, serif;
-      margin: 0;
-    }
+     p {
+          font-family: 'Times New Roman', Times, serif;
+          margin: 0;
+     }
 
-    h3 {
-      font-family: 'Times New Roman', Times, serif;
-      margin: 0;
-    }
+     h3 {
+          font-family: 'Times New Roman', Times, serif;
+          margin: 0;
+     }
 
-    a {
-      font-family: 'Times New Roman', Times, serif;
-      color: var(--text-color);
-      text-decoration-color: var(--text-color);
-      text-decoration-thickness: 2px;
-      text-decoration-style: dotted; 
-      text-underline-offset: 3px;
-    }
+     a {
+          font-family: 'Times New Roman', Times, serif;
+          color: var(--text-color);
+          text-decoration-color: var(--text-color);
+          text-decoration-thickness: 2px;
+          text-decoration-style: dotted; 
+          text-underline-offset: 3px;
+     }
 
-    .badge {
-      background: var(--bg-color);
-      padding: 20px;
-      text-align: center;
-      font-family: 'Times New Roman', Times, serif;
-      max-width: 250px;
-      height: 100%;
-      margin: 0 auto;
-    }
+     .badge {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+          background: var(--bg-color);
+          padding: 20px;
+          text-align: center;
+          font-family: 'Times New Roman', Times, serif;
+          max-width: 250px;
+          height: 100%;
+          margin: 0 auto;
+     }
 
-    .badge h3 {
-      margin: 0 0 10px 0;
-      font-size: 18px;
-      line-height: 1.2;
-    }
+     .badge h3 {
+          margin: 0 0 10px 0;
+          font-size: 18px;
+          line-height: 1.2;
+     }
 
-    .badge p {
-      font-size: 16px;
-      margin: 10px 0;
-    }
+     .badge p {
+          font-size: 16px;
+          margin: 10px 0;
+     }
 
-    .badge .number {
-      font-size: 32px;
-      font-weight: normal;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 15px 0;
-    }
+     .badge .number {
+          font-size: 32px;
+          font-weight: normal;
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          margin: 15px 0;
+     }
 
-    .badge .number span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 45px;
-      height: 60px;
-      border: 1px solid var(--text-color);
-      border-radius: 40px;
-      font-size: 20px;
-      line-height: 41px;
-      cursor: pointer;
-      transition: all 0.1s ease;
-      background: var(--bg-color);
-    }
+     .badge .number span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 45px;
+          height: 60px;
+          border: 1px solid var(--text-color);
+          border-radius: 40px;
+          font-size: 20px;
+          line-height: 41px;
+          cursor: pointer;
+          transition: all 0.1s ease;
+          background: var(--bg-color);
+     }
 
-    .badge .number span:hover {
-      transform: scale(0.95);
-    }
+     .badge .number span:hover {
+          transform: scale(0.95);
+     }
 
-    .badge .number span:active {
-      transform: scale(0.9);
-    }
-    
-    .error {
-      color: red;
-      font-size: 16px;
-      text-align: center;
-    }
+     .badge .number span:active {
+          transform: scale(0.9);
+     }
+
+     .badge .ipb-title {
+          display: none;
+     }
+     
+     .error {
+          color: red;
+          font-size: 16px;
+          text-align: center;
+     }
+
+     /* Small badge */
+     .badge.small {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          max-width: 100%;
+          padding: 0;
+     }
+
+     .badge.small h3 {
+          font-size: 14px;
+          margin: 0 0 8px 0;
+          display: none;
+     }
+
+     .badge.small p {
+          font-style: normal;
+          text-align: left;
+          font-size: 14px;
+          line-height: 1;
+          margin: 0;
+          margin-right: 6px;
+     }
+
+     .badge.small .number {
+          gap: 4px;
+          margin: 0px 0;
+     }
+
+     .badge.small .number span {
+          width: 18px;
+          height: 20px;
+          font-size: 14px;
+     }
+
+     .badge.small .ipb-title {
+          display: block;
+          font-weight: bold;
+          font-size: 11px;
+          margin: 0;
+          margin-left: 6px;
+          margin-top: 6px;
+     }
+
+     .badge.small .content-container {
+          display: flex;
+          flex-direction: row nowrap;
+          align-items: center;
+          justify-content: space-between;
+     }
   </style>
 </head>
 <body>
@@ -169,6 +231,7 @@
       // Get number from URL parameter
       const urlParams = new URLSearchParams(window.location.search);
       const number = urlParams.get('number');
+      const size = urlParams.get('size');
       
       if (!number) {
         content.innerHTML = `
@@ -190,11 +253,19 @@
       }
       
       // Generate and display badge
-      const badgeHtml = `<div class="badge">
-  <h3>This website is listed in the Internet Phone Book</h3>
-  <p>You can <a href="https://internetphonebook.net/?dial=${number}" target="_blank">dial-this-site</a> at:</p>
-  <div class="number">
-    ${number.split('').map(n => `<span onclick="playDTMF('${n}')">${n}</span>`).join('')}
+      const sizeClass = size === 'small' ? ' small' : '';
+      const badgeHtml = `<div class="badge${sizeClass}">
+  <div class="content-container">
+      <div class="content">
+        <h3>This website is listed in the Internet Phone Book</h3>
+        <p>You can <a href="https://internetphonebook.net/?dial=${number}" target="_blank">dial-this-site</a> at:</p>
+      </div>
+      <div class="number">
+        ${number.split('').map(n => `<span onclick="playDTMF('${n}')">${n}</span>`).join('')}
+      </div>
+  </div>
+  <div class="ipb-title">
+    Internet Phone Book
   </div>
 </div>`;
       
