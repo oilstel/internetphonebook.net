@@ -763,55 +763,48 @@ footer p {
     display: flex;
     align-items: baseline;
     margin-bottom: 0px;
-    width: 100%;
     font-style: normal;
-}
-
-#stocklist-list .shop-name,
-#stocklist-list .location,
-#stocklist-list .link {
-    font-weight: normal;
-    text-align: left;
-    white-space: nowrap;
-    word-wrap: normal;
-    word-break: keep-all;
-    overflow-wrap: normal;
-    background-color: var(--bg-color);
-    padding: 0 5px;
+    overflow: hidden;
+    margin-bottom: 25px;
 }
 
 #stocklist-list .shop-name {
-    padding-right: 5px;
-    width: max-content;
-    display: inline-block;
-}
-
-#stocklist-list .location {
-    padding: 0 5px;
-    width: max-content;
-    display: inline-block;
-}
-
-#stocklist-list .link {
-    text-align: right;
-    display: inline-block;
-}
-
-#stocklist-list .dots-left,
-#stocklist-list .dots-right {
-    overflow: hidden;
-    letter-spacing: 5px;
-    align-self: flex-end;
-    margin-bottom: 0.6em;
+    background-color: var(--bg-color);
+    padding-right: 10px;
+    flex-shrink: 0;
+    font-weight: normal;
     white-space: nowrap;
 }
 
-#stocklist-list .dots-left {
-    grid-column: 2;
+#stocklist-list .location {
+    background-color: var(--bg-color);
+    font-style: italic;
+    padding-right: 10px;
+    flex-shrink: 0;
+    font-weight: normal;
+    white-space: nowrap;
+    font-size: 26px;
+    line-height: 1.2;
 }
 
 #stocklist-list .dots-right {
-    grid-column: 4;
+    flex-grow: 1;
+    height: 4px;
+    margin: 0 5px;
+    margin-bottom: 0.3em;
+    background-image: radial-gradient(circle, var(--text-color) 2px, transparent 2px);
+    background-size: 15px 4px;
+    background-repeat: repeat-x;
+    background-position: center;
+}
+
+#stocklist-list .link {
+    background-color: var(--bg-color);
+    padding-left: 5px;
+    flex-shrink: 0;
+    text-align: right;
+    font-weight: normal;
+    white-space: nowrap;
 }
 
 #stocklist-list .link a {
@@ -828,25 +821,25 @@ footer p {
         flex-flow: column nowrap;
         border-bottom: 1px dashed var(--text-color);
         padding: 20px 0;
+        margin: 0;
     }
     #stocklist-list .shop-name, #stocklist-list .location, #stocklist-list .link {
         padding: 0;
     }
     #stocklist-list .shop-name {
         font-weight: bold;
+        order: 1;
+    }
+    #stocklist-list .location {
+        font-size: 20px;
+        order: 2;
     }
     #stocklist-list .dots-right {
         display: none;
     }
-    #stocklist-list .dots-left {
-        display: none;
-    }
-    #stocklist-list .dots-left, #stocklist-list .dots-right {
-        align-self: flex-start;
-        margin-bottom: 0;
-    }
     #stocklist-list .link {
         margin-top: 10px;
+        order: 3;
     }
     #stocklist-list .link a {
         display: inline-block;
