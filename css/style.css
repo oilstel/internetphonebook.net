@@ -103,9 +103,47 @@ figure.two-up-images img {
 a#buy-now-button {
     border: 2px solid var(--text-color);
     background-color: #ffef17;
-    border-radius: 30px;
+    border-radius: 20px;
     text-decoration: none;
     padding: 10px 25px;
+}
+a#buy-now-button:hover {
+    box-shadow: 4px 4px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.centered {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.for-sale {
+    width: 100%;
+    max-width: 800px;
+    padding: 40px 30px;
+    border: 1px dotted #000;
+    border-radius: 20px;
+    box-shadow: 13px 13px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.for-sale .small {
+    font-size: 30px;
+    line-height: 36px;
+}
+.for-sale .fine-print {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+/* Ticker */
+#ticker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: yellow;
+    background-color: #000;
+
+
 }
 
 

@@ -4,7 +4,8 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 });
 
 // Enter the Are.na channel slug here. It has to be an open or closed channel. Private channels are not supported.
-let channel_title = 'photo-album-printing-the-internet-phone-book';
+// let channel_title = 'photo-album-printing-the-internet-phone-book';
+let channel_title = 'our-internet-phone-books';
 
 // Are.na's base API url
 const api = 'https://api.are.na/v2/channels/';
@@ -70,15 +71,15 @@ async function fetchAllContents() {
         });
 
         // Set favicon using first image (only on first page)
-        if (page === 1 && data.contents.length > 0) {
-            const firstImage = data.contents[0];
-            if (firstImage.class === 'Image') {
-                const favicon = document.createElement('link');
-                favicon.rel = 'icon';
-                favicon.href = firstImage.image.thumb.url;
-                document.head.appendChild(favicon);
-            }
-        }
+        // if (page === 1 && data.contents.length > 0) {
+        //     const firstImage = data.contents[0];
+        //     if (firstImage.class === 'Image') {
+        //         const favicon = document.createElement('link');
+        //         favicon.rel = 'icon';
+        //         favicon.href = firstImage.image.thumb.url;
+        //         document.head.appendChild(favicon);
+        //     }
+        // }
         
         hasMore = data.contents.length === 20;
         page++;
