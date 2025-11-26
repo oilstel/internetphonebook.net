@@ -267,7 +267,7 @@ h2.flower-right::before {
     line-height: 32px;
     margin-top: 10px;
 }
-.event .new {
+.event .upcoming {
     position: absolute;
     top: 10px;
     right: 10px;
