@@ -61,7 +61,7 @@
             <a href="#get-the-book">Get the book</a>
             <a href="#tour">Book tour</a>
             <a href="#dial-a-site">Dial-a-site</a>
-            <a href="#stocklist">Stocklist</a>
+            <a href="#stocklist">Where to find</a>
             <a href="#mailing-list">Reviews</a>
             <a href="#mailing-list">Mailing list</a>
             <a href="badges/index.html">Badges</a>
@@ -95,7 +95,7 @@
                     <p><i><b>Sold out online</b></i></p>
 
                     <p>
-                        Check the <a href="#stocklist">stocklist</a>. A few bookshops still carry the book. Subscribe to the <a href="#mailing-list">email list</a> to be notified about issue two.
+                        Check <a href="#stocklist">where to find</a> the book. A few bookshops still carry it. Subscribe to the <a href="#mailing-list">email list</a> to be notified about issue two.
                     </p>
 
                     <!-- <p class="small" style="margin-bottom: 10px;">Back in stock worldwide through our friends at Metalabel*</p>
@@ -339,108 +339,148 @@
         </section>
 
         <section id="stocklist">
-            <h2>Stocklist</h2>
+            <h2>Where to find</h2>
 
-            <p>
-                Find the Internet Phone Book at the following bookshops, community spaces, and libraries.
-            </p>
+            <nav class="tabs" role="tablist">
+                <button class="tab-button active" role="tab" aria-selected="true" aria-controls="libraries" onclick="switchTab(event, 'libraries')">Libraries</button>
+                <button class="tab-button" role="tab" aria-selected="false" aria-controls="stocklist-tab" onclick="switchTab(event, 'stocklist-tab')">Stocklist</button>
+            </nav>
 
-            <ul id="stocklist-list">
-                <li>
-                    <span class="shop-name">Separate Spaces</span>
-                    <span class="location">Seoul, Korea</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><a href="https://separatespaces.kr">visit →</a></span>
-                </li>
-                <li>
-                    <span class="shop-name">Hopscotch Reading Room</span>
-                    <span class="location">Berlin, Germany</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><a href="https://www.instagram.com/hopscotchreadingroom">visit →</a></span>
-                </li>
-                <li>
-                    <span class="shop-name">Adad Books</span>
-                    <span class="location">Athens, Greece</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><i>sold out</i></span>
-                </li>
-                 <li>
-                    <span class="shop-name">Athenaeum Nieuwscentrum</span>
-                    <span class="location">Amsterdam, The Netherlands</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><a href="https://athenaeumscheltema.nl/a/magazine/internet-phone-book-%231/9773057445001">visit →</a></span>
-                </li>
-                <li>
-                    <span class="shop-name">Plot</span>
-                    <span class="location">Los Angeles, USA</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><i>sold out</i></span>
-                </li>
-                <li>
-                    <span class="shop-name">Burn All Books</span>
-                    <span class="location">San Diego, USA</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><i>sold out</i></span>
-                </li>
-                <li>
-                    <span class="shop-name">Chess Club</span>
-                    <span class="location">Portland, USA</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><i>sold out</i></span>
-                </li>
-                <li>
-                    <span class="shop-name">Supertime Books</span>
-                    <span class="location">Copenhagen, Denmark</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><i>sold out</i></span>
-                </li>
-                <li>
-                    <span class="shop-name">Pro qm</span>
-                    <span class="location">Berlin, Germany</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><a href="https://pro-qm.de/">visit →</a></span>
-                </li>
-                <li>
-                    <span class="shop-name">Hyper Hypo</span>
-                    <span class="location">Athens, Greece</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><a href="https://hyperhypo.gr/">visit →</a></span>
-                </li>
-                <li>
-                    <span class="shop-name">San Seriffe</span>
-                    <span class="location">Amsterdam, NL</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><i>sold out</i></span>
-                </li>
-                <li>
-                    <span class="shop-name">Birdcall</span>
-                    <span class="location">Seoul, Korea</span>
-                    <span class="dots-right"></span>
-                    <span class="link"><a href="https://birdcall-kiosk.online/">visit →</a></span>
-                </li>
-                <li>
-                    <span class="shop-name">Metalabel</span>
-                    <span class="location">Wordwide</span>
-                    <span class="dots-right"></span>
-                    <span class="link"> <i>sold out</i></span>
-                </li>
-            </ul>
+            <div id="libraries" class="tab-content active" role="tabpanel" aria-labelledby="libraries-tab">
+                <p>
+                    Find the Internet Phone Book at the following libraries and community spaces.
+                </p>
+
+                <ul class="stocklist-list">
+                    <li>
+                        <span class="shop-name">servus</span>
+                        <span class="location">Salzburg, Austria</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><a href="https://core.servus.at/">visit →</a></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Deutsches Literaturarchiv Marbach</span>
+                        <span class="location">Marbach am Neckar, Germany</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><a href="https://www.dla-marbach.de/">visit →</a></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">The National Library of Greece</span>
+                        <span class="location">Athens, Greece</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><a href="https://www.nlg.gr/en/">visit →</a></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">British Film Institute Library</span>
+                        <span class="location">London, UK</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><a href="https://www.bfi.org.uk/bfi-national-archive/bfi-archive-collections">visit →</a></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="stocklist-tab" class="tab-content" role="tabpanel" aria-labelledby="stocklist-tab">
+                <p>
+                    Find the Internet Phone Book at the following bookshops and community spaces.
+                </p>
+
+                <ul class="stocklist-list">
+                    <li>
+                        <span class="shop-name">Separate Spaces</span>
+                        <span class="location">Seoul, Korea</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><a href="https://separatespaces.kr">visit →</a></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Hopscotch Reading Room</span>
+                        <span class="location">Berlin, Germany</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><a href="https://www.instagram.com/hopscotchreadingroom">visit →</a></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Adad Books</span>
+                        <span class="location">Athens, Greece</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><i>sold out</i></span>
+                    </li>
+                     <li>
+                        <span class="shop-name">Athenaeum Nieuwscentrum</span>
+                        <span class="location">Amsterdam, The Netherlands</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><a href="https://athenaeumscheltema.nl/a/magazine/internet-phone-book-%231/9773057445001">visit →</a></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Plot</span>
+                        <span class="location">Los Angeles, USA</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><i>sold out</i></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Burn All Books</span>
+                        <span class="location">San Diego, USA</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><i>sold out</i></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Chess Club</span>
+                        <span class="location">Portland, USA</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><i>sold out</i></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Supertime Books</span>
+                        <span class="location">Copenhagen, Denmark</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><i>sold out</i></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Pro qm</span>
+                        <span class="location">Berlin, Germany</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><a href="https://pro-qm.de/">visit →</a></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Hyper Hypo</span>
+                        <span class="location">Athens, Greece</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><a href="https://hyperhypo.gr/">visit →</a></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">San Seriffe</span>
+                        <span class="location">Amsterdam, NL</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><i>sold out</i></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Birdcall</span>
+                        <span class="location">Seoul, Korea</span>
+                        <span class="dots-right"></span>
+                        <span class="link"><a href="https://birdcall-kiosk.online/">visit →</a></span>
+                    </li>
+                    <li>
+                        <span class="shop-name">Metalabel</span>
+                        <span class="location">Wordwide</span>
+                        <span class="dots-right"></span>
+                        <span class="link"> <i>sold out</i></span>
+                    </li>
+                </ul>
+            </div>
         </section>
 
         <section id="voicemail">
             <h2>What are people saying</h2>
 
-            <p>“I just read the foreword, and I resonate with each word. It made me realize how social media isn't THE internet.” - Anastasia Pappa, Desired Landscapes</p>
+            <p>"I just read the foreword, and I resonate with each word. It made me realize how social media isn't THE internet." - <i>Anastasia Pappa, Desired Landscapes</i></p>
 
-            <p>“The Internet Phone Book is the book I've been loving and enjoying the most these days, both reading and playing with it.” - Halim Lee</p>
+            <p>"The Internet Phone Book is the book I've been loving and enjoying the most these days, both reading and playing with it." - <i>Halim Lee</i></p>
 
-            <p>“Yet another great project from two of my favorite internet weirdos.” - Andy Baio, Waxy.org</p>
+            <p>"Yet another great project from two of my favorite internet weirdos." - <i><a href="https://waxy.org/">Andy Baio</a>, Waxy.org</i></p>
 
-            <p>“The Internet Phone Book is the tip of the iceberg of a lively community (700 people are in the book) that has generated many interesting ideas.” - Silvio Lorusso</p>
+            <p>"The Internet Phone Book is the tip of the iceberg of a lively community (700 people are in the book) that has generated many interesting ideas." - <i><a href="https://www.silviolorusso.com/">Silvio Lorusso</a></i></p>
 
-            <p>“Fuck Google. I’m going analog with The Internet Phonebook.” - Dobbs</p>
+            <p>"Fuck Google. I'm going analog with The Internet Phonebook." - <i>Dobbs</i></p>
 
-            <p>“Internet Phone Book is The Whole Internet for our times.” - Olia Lialina</p>
+            <p>"Internet Phone Book is The Whole Internet for our times." - <i><a href="http://art.teleportacia.org/olia.html">Olia Lialina</a></i></p>
 
         </section>
 
@@ -511,5 +551,192 @@
     <script src="js/script.js?v=1.6"></script>
     <script src="js/camera-roll.js?v=1.6"></script>
     <script src="js/dial-a-site.js?v=1.6"></script>
+
+    <style>
+        nav.tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 0;
+            width: fit-content;
+        }
+
+        .tab-button {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: var(--bg-color);
+            border: 2px solid var(--text-color);
+            border-bottom: 2px solid var(--text-color);
+            border-radius: 8px 8px 0 0;
+            padding: 12px 30px 10px 30px;
+            cursor: pointer;
+            font-size: 26px;
+            line-height: 32px;
+            color: var(--text-color);
+            font-weight: normal;
+            position: relative;
+            margin-bottom: 0;
+        }
+
+        .tab-button:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-button.active {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-weight: normal;
+            z-index: 2;
+            padding-bottom: 14px;
+            border-bottom: none;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            border-top: 2px solid var(--text-color);
+            padding-top: 30px;
+            position: relative;
+            z-index: 1;
+            margin-top: -2px;
+        }
+
+        .stocklist-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            width: 100%;
+            font-size: 32px;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        .stocklist-list li {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 0px;
+            font-style: normal;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .stocklist-list .shop-name {
+            background-color: var(--bg-color);
+            padding-right: 10px;
+            flex-shrink: 0;
+            font-weight: normal;
+            white-space: nowrap;
+        }
+
+        .stocklist-list .location {
+            background-color: var(--bg-color);
+            font-style: italic;
+            padding-right: 3px;
+            flex-shrink: 0;
+            font-weight: normal;
+            white-space: nowrap;
+            font-size: 26px;
+            line-height: 1.2;
+        }
+
+        .stocklist-list .dots-right {
+            flex-grow: 1;
+            height: 4px;
+            margin: 0 5px;
+            margin-bottom: 0.3em;
+            background-image: radial-gradient(circle, var(--text-color) 2px, transparent 2px);
+            background-size: 10px 4px;
+            background-repeat: repeat-x;
+            background-position: center;
+        }
+
+        .stocklist-list .link {
+            background-color: var(--bg-color);
+            padding-left: 5px;
+            flex-shrink: 0;
+            text-align: right;
+            font-weight: normal;
+            white-space: nowrap;
+        }
+
+        .stocklist-list .link a {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 5px;
+        }
+
+        @media (max-width: 600px) {
+            nav.tabs {
+                width: 100%;
+                gap: 3px;
+            }
+
+            .tab-button {
+                flex: 1;
+                font-size: 22px;
+                padding: 10px 15px 8px 15px;
+                border-radius: 6px 6px 0 0;
+            }
+
+            .tab-button.active {
+                padding-bottom: 12px;
+                border-bottom: none;
+            }
+
+            .stocklist-list {
+                margin: 0;
+            }
+            .stocklist-list li {
+                flex-flow: column nowrap;
+                border-bottom: 1px dashed var(--text-color);
+                padding: 20px 0;
+                margin: 0;
+            }
+            .stocklist-list .shop-name, .stocklist-list .location, .stocklist-list .link {
+                padding: 0;
+            }
+            .stocklist-list .shop-name {
+                font-weight: bold;
+                order: 1;
+            }
+            .stocklist-list .location {
+                font-size: 20px;
+                order: 2;
+            }
+            .stocklist-list .dots-right {
+                display: none;
+            }
+            .stocklist-list .link {
+                margin-top: 10px;
+                order: 3;
+            }
+            .stocklist-list .link a {
+                display: inline-block;
+                border: 1px solid var(--text-color);
+                padding: 10px 30px;
+                border-radius: 40px;
+                text-decoration: none;
+            }
+        }
+    </style>
+
+    <script>
+        function switchTab(event, tabId) {
+            // Remove active class from all tabs and content
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+                button.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Add active class to clicked tab and corresponding content
+            event.currentTarget.classList.add('active');
+            event.currentTarget.setAttribute('aria-selected', 'true');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
 </body>
 </html>
