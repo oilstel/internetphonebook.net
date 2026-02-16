@@ -626,7 +626,7 @@
         </section>
 
         <section id="behind-the-scenes">
-            <h2 class="flower-right">Our Internet Phone Books <span style="margin-left: 5px; margin-top: 14px; font-size: 16px; font-style: normal; font-weight: normal;">(From the <a href="https://www.are.na/internet-phone-book/our-internet-phone-books">Are.na channel</a> ✶✶)</span></h2>
+            <h2 class="flower-right">Our Internet Phone Books <span class="arena-note" style="margin-left: 5px; margin-top: 14px; font-size: 16px; font-style: normal; font-weight: normal;">(From the <a href="https://www.are.na/internet-phone-book/our-internet-phone-books">Are.na channel</a> ✶✶)</span></h2>
 
             <div id="camera-roll">
                 <div id="thumbs"></div>
@@ -642,7 +642,7 @@
                 You can also find us on ✶✶ <a href="https://www.are.na/internet-phone-book">Are.na</a> and <a href="https://www.instagram.com/internetphonebook">Instagram</a> at <a href="https://www.tiktok.com/@internetphonebook">Tiktok</a>.
                 <br><br>
                 <small>Visit the <a href="https://internetphonebook.net/pre-print-site">previous version</a> of this website.</small>
-                <small>Read our <a href="privacy-policy.html">privacy policy</a>.</small>
+                <small>Read our <a href="privacy-policy.html">privacy policy</a>. Written with <a href="https://html.energy">HTML Energy</a>.</small>
             </p>
             <img src="images/phone.png" style="width: 200px">
         </footer>
@@ -817,6 +817,17 @@
                 padding: 10px 30px;
                 border-radius: 40px;
                 text-decoration: none;
+            }
+
+            h2.flower-right:has(.arena-note) {
+                flex-wrap: wrap;
+            }
+
+            .arena-note {
+                display: block;
+                width: 100%;
+                margin-left: 0 !important;
+                margin-top: 5px !important;
             }
         }
     </style>
