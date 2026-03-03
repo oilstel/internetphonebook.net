@@ -438,7 +438,18 @@ nav a {
 nav a:hover {
     color: var(--text-color);
     text-decoration-style: solid;
-}   
+}
+nav a.nav-highlight {
+    background-color: #ffef17;
+    border: 2px solid var(--text-color);
+    border-radius: 20px;
+    padding: 2px 15px;
+    text-decoration: none;
+    color: var(--text-color);
+}
+nav a.nav-highlight:hover {
+    box-shadow: 4px 4px 2px 0 rgba(0, 0, 0, 0.25);
+}
 
 
 
