@@ -186,6 +186,18 @@
       margin-bottom: 0;
     }
     
+    .dial-number {
+      display: inline-block;
+      border: 2px solid var(--text-color);
+      border-radius: 50px;
+      padding: 2px 14px;
+      text-decoration: none;
+    }
+
+    .dial-number:hover {
+      background: #00000013;
+    }
+
     .error {
       color: red;
       font-style: italic;
@@ -280,10 +292,8 @@
             
         </div>
 
-        <div id="get-a-copy" style="display: none;">
-            <p>Purchase a copy of the Internet Phone Book on Metalabel.</p>
-            <a href="https://livingweb.metalabel.com/internetphonebook?variantId=1" id="arena-gift-shop-link">Puchase on Metalabel</a>
-        </div>
+
+
     
         <footer>
             <p><a href="../index.html">The Internet Phone Book</a>, 2025</p>
@@ -305,7 +315,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    dbData = data;
+                    dbData = data.map((entry, i) => ({ ...entry, number: i + 1 }));
                     console.log('Database loaded successfully');
                 })
                 .catch(error => {
@@ -319,19 +329,16 @@
                 const urlInput = document.getElementById('site-url').value.trim();
                 if (!urlInput) {
                     resultsDiv.innerHTML = '<p class="error">Please enter a URL</p>';
-                    document.getElementById('get-a-copy').style.display = 'none';
                     return;
                 }
 
                 if (!dbData) {
                     resultsDiv.innerHTML = '<p class="error">Database not loaded yet. Please try again in a moment.</p>';
-                    document.getElementById('get-a-copy').style.display = 'none';
                     return;
                 }
 
                 // Show loading indicator
                 resultsDiv.innerHTML = '<p class="loading">Searching the Internet Phone Book...</p>';
-                document.getElementById('get-a-copy').style.display = 'none';
 
                 // Search with a slight delay to ensure the loading indicator is visible
                 setTimeout(() => {
@@ -403,8 +410,7 @@
                     if (exactMatches.length === 0 && partialMatches.length === 0) {
                         resultsDiv.innerHTML = '<p>No entries found matching your search. Try a different name or website.</p>';
                         // Hide get-a-copy for no results
-                        document.getElementById('get-a-copy').style.display = 'none';
-                        return;
+                            return;
                     }
 
                     // Combine all matches into a single array and ensure no duplicates
@@ -441,14 +447,13 @@
                                 <h3>${match.title}</h3>
                                 <p><a href="${match.url}" target="_blank">${match.url}</a></p>
                                 <p>Size: ${match.size}</p>
+                                <p>Dial-a-site: <a class="dial-number" href="https://internetphonebook.net/?call=${match.number}&issue=1#dial-a-site">#${match.number}</a></p>
                             </div>
                         `;
                     });
                     
                     resultsDiv.innerHTML = resultsHTML;
                     
-                    // Show the get-a-copy section after search
-                    document.getElementById('get-a-copy').style.display = 'block';
                 }, 500);
             });
         });
