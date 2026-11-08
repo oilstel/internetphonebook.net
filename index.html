@@ -72,9 +72,9 @@
         </div>
         <div class="voicemail-info">
             <p><a href="#" id="call-the-internet">Call the internet</a> and leave a voicemail.</p>
-            <audio src="audio/call-the-internet.mp3" id="dialup" preload="none"></audio>
+            <audio src="audio/call-the-internet.mp3" id="dialup" preload="metadata" playsinline></audio>
             <p class="voicemail-prompt"><i>Describe your website, or a landscape from your childhood.</i></p>
-            <p class="voicemail-small">We hope to include some of these in Issue 2.</p>
+            <p class="voicemail-small">By leaving a message, you’re saying it’s okay for us to share yours in Issue 2 and on the www. Thank you!</p>
         </div>
     </section>
     <main>
@@ -1032,9 +1032,27 @@
             var stage = document.querySelector('.voicemail-stage');
             var lead = document.getElementById('voicemail-lead');
             var pauseLink = document.getElementById('voicemail-pause');
+            // Let audio play even when an iPhone's silent switch is on (Safari 17+).
+            if (navigator.audioSession) {
+                try { navigator.audioSession.type = 'playback'; } catch (err) {}
+            }
+            function rewind() {
+                if (audio.readyState > 0) {
+                    try { audio.currentTime = 0; } catch (err) {}
+                }
+            }
+            function startAudio() {
+                rewind();
+                var p = audio.play();
+                if (p && p.catch) p.catch(function () {
+                    // First attempt can fail on some phones before the file loads; retry once.
+                    audio.load();
+                    audio.play().catch(function () {});
+                });
+            }
             function hangUp() {
                 audio.pause();
-                audio.currentTime = 0;
+                rewind();
                 stage.classList.remove('is-calling');
                 lead.classList.remove('is-calling');
             }
@@ -1044,8 +1062,7 @@
                 stage.classList.add('is-calling');
                 lead.classList.add('is-calling');
                 pauseLink.textContent = 'Pause';
-                audio.currentTime = 0;
-                audio.play();
+                startAudio();
             }
             pauseLink.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1064,8 +1081,7 @@
             });
             document.getElementById('voicemail-repeat').addEventListener('click', function (e) {
                 e.preventDefault();
-                audio.currentTime = 0;
-                audio.play();
+                startAudio();
                 pauseLink.textContent = 'Pause';
             });
             link.addEventListener('click', toggleCall);
