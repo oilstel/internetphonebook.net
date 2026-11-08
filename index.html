@@ -71,7 +71,7 @@
         </a>
         </div>
         <div class="voicemail-info">
-            <p><a href="#" id="call-the-internet">Call the internet</a> and leave a voicemail.</p>
+            <p><a href="tel:+15168752665" id="call-the-internet">Call the internet</a> and leave a voicemail.</p>
             <audio src="audio/call-the-internet.mp3" id="dialup" preload="metadata" playsinline></audio>
             <p class="voicemail-prompt"><i>Describe your website, or a landscape from your childhood.</i></p>
             <p class="voicemail-small">By leaving a message, you’re saying it’s okay for us to share yours in Issue 2 and on the www. Thank you!</p>
@@ -1027,7 +1027,6 @@
             window.addEventListener('resize', size);
             if (document.fonts) document.fonts.ready.then(size);
 
-            var link = document.getElementById('call-the-internet');
             var audio = document.getElementById('dialup');
             var stage = document.querySelector('.voicemail-stage');
             var lead = document.getElementById('voicemail-lead');
@@ -1084,7 +1083,6 @@
                 startAudio();
                 pauseLink.textContent = 'Pause';
             });
-            link.addEventListener('click', toggleCall);
             document.getElementById('voicemail-play').addEventListener('click', toggleCall);
             // On desktop, clicking the number plays the call; on phones it still dials.
             stage.querySelector('.voicemail-marquee').addEventListener('click', function (e) {
