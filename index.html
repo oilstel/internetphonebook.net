@@ -1084,6 +1084,13 @@
                 pauseLink.textContent = 'Pause';
             });
             document.getElementById('voicemail-play').addEventListener('click', toggleCall);
+            // "Call the internet" plays the message and also dials the number.
+            document.getElementById('call-the-internet').addEventListener('click', function () {
+                stage.classList.add('is-calling');
+                lead.classList.add('is-calling');
+                pauseLink.textContent = 'Pause';
+                startAudio();
+            });
             // On desktop, clicking the number plays the call; on phones it still dials.
             stage.querySelector('.voicemail-marquee').addEventListener('click', function (e) {
                 if (window.matchMedia('(hover: hover)').matches) toggleCall(e);
